@@ -1,3 +1,3 @@
 # ProgettoProgrammazione
 
-<img src="/Users/luca/Desktop/OOP.jpg">
+il logo è <img src="/Users/luca/Desktop/OOP.jpg">

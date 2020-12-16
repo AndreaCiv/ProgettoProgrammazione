@@ -1,3 +1,5 @@
 # ProgettoProgrammazione
 
-<img src= "diagclassi.png">
+<img src="/Users/luca/Desktop/OOP.jpg">
+<img src="diagclassi.jpg">
+<img src="diagseq.jpg">

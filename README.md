@@ -1,3 +1,3 @@
 # ProgettoProgrammazione
 
-<img src="/Users/luca/Desktop/OOP.jpeg">
+<img src="/Users/luca/Desktop/OOP.jpg">

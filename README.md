@@ -1,3 +1,3 @@
 # ProgettoProgrammazione
 
-<img src= "diagclassi.jpg">
+<img src= "diagclassi.png">

@@ -12,7 +12,7 @@ import java.util.Vector;
 public class Citta {
 	
 	private String nomeCitta;
-	private int id;
+	private long id;
 	private double lat;
 	private double lon;
 	private Vector<DatoMeteo> datiMeteo;
@@ -25,7 +25,7 @@ public class Citta {
 	 * @param lat	    Latitudine
 	 * @param lon       Longitudine
 	 */
-	public Citta (String nomeCitta, int id, double lat, double lon)
+	public Citta (String nomeCitta, long id, double lat, double lon)
 	{
 		this.nomeCitta = nomeCitta;
 		this.id = id;
@@ -51,14 +51,14 @@ public class Citta {
 	/**
 	 * @return ID per le API di Openweather
 	 */
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
 	/**
 	 * @param id ID per le API di Openweather
 	 */
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

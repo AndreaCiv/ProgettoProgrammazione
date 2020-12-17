@@ -19,9 +19,10 @@ public class DatoMeteo {
 	/**
 	 * @Constructor per DatoMeteo
 	 * 
-	 * @param tempPerc Temperatura percepita in °C
-	 * @param velVento Velocità del vento in km/h
-	 * @param dataUnix Data in formato Unix
+	 * @param temperaura Temperatura in °C
+	 * @param tempPerc   Temperatura percepita in °C
+	 * @param velVento   Velocità del vento in km/h
+	 * @param dataUnix   Data in formato Unix
 	 */
 	public DatoMeteo (double temperatura, double tempPerc, double velVento, long dataUnix)
 	{

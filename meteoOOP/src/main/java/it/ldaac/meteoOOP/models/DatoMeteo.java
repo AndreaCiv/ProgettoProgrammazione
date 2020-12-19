@@ -87,5 +87,12 @@ public class DatoMeteo {
 	public void setData(Date data) {
 		this.data = data;
 	}
-
+	
+	public boolean confrontaData (Date data)
+	{
+		if (this.data.compareTo(data)>=0)
+			return true;
+		else
+			return false;
+	}
 }

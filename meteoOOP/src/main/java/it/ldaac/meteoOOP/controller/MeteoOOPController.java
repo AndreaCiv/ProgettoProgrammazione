@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Vector;
 
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,9 @@ import it.ldaac.meteoOOP.utilities.DataParser;
 
 @RestController
 public class MeteoOOPController {
+	
+	@Autowired
+	MeteoService meteoservice = new MeteoService();
 	
 	@RequestMapping(value = "/testcitta", method = RequestMethod.POST)
 	public Vector<Citta> test(@RequestBody JSONObject richiesta) throws org.json.simple.parser.ParseException

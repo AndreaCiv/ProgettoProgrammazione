@@ -21,7 +21,7 @@ import it.ldaac.meteoOOP.utilities.DataParser;
 
 @RestController
 public class MeteoOOPController {
-	
+	// ciao
 	@Autowired
 	MeteoService meteoservice = new MeteoService();
 	

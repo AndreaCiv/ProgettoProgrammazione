@@ -23,15 +23,20 @@ public class CoordParser extends Parser {
 
 	public CoordParser(String apiKey) {
 		super(apiKey);
-		super.setUrl("https://api.openweathermap.org/data/2.5/weather?q=");
 	}
 	
+	/**
+	 * 
+	 * @param nomeCitta Nome della città della quale vogliamo sapere le coordinate
+	 * @return Le coordinate della città cercata in un vettore di double, nel quale, alla posizione 0 c'è 
+	 * la latitudine, alla posizione 1 la longitudine;
+	 */
 	public double[] richiestaCoord(String nomeCitta)
 	{
 		JSONParser parser = new JSONParser();
 		double coordinate[] = new double[2];
 		try {
-			URLConnection openWeather = new URL(super.getUrl() + nomeCitta + "&appid=" + super.getApiKey()).openConnection();
+			URLConnection openWeather = new URL(this.URLGenerator(nomeCitta)).openConnection();
 			BufferedReader in = new BufferedReader(new InputStreamReader(openWeather.getInputStream()));
 			
 			String inputLine = in.readLine();
@@ -50,6 +55,19 @@ public class CoordParser extends Parser {
 			e.printStackTrace();
 		}
 		return coordinate;
+	}
+	
+	/**
+	 * 
+	 * @param nomeCitta Nome della città di cui cercare le coordinate
+	 * @return URL sotto forma di stringa per chiamare l'API di Openweather
+	 */
+	public String URLGenerator(String nomeCitta)
+	{
+		String URL = "https://api.openweathermap.org/data/2.5/weather";
+		URL += ("?q=" + nomeCitta);
+		URL += ("&appid=" + super.getApiKey());
+		return URL;
 	}
 
 }

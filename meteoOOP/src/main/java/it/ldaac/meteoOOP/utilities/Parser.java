@@ -10,7 +10,6 @@ package it.ldaac.meteoOOP.utilities;
  */
 public class Parser {
 	
-	private String url;
 	private String apiKey;
 	
 	/**
@@ -21,20 +20,6 @@ public class Parser {
 	public Parser( String apiKey)
 	{
 		this.apiKey = apiKey;
-	}
-
-	/**
-	 * @return URL dell'API
-	 */
-	public String getUrl() {
-		return url;
-	}
-
-	/**
-	 * @param url URL dell'API
-	 */
-	public void setUrl(String url) {
-		this.url = url;
 	}
 
 	/**

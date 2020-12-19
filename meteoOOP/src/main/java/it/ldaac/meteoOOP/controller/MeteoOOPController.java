@@ -16,13 +16,13 @@ import it.ldaac.meteoOOP.exceptions.BadRequestException;
 import it.ldaac.meteoOOP.models.Citta;
 import it.ldaac.meteoOOP.models.DatoMeteo;
 import it.ldaac.meteoOOP.models.Richiesta;
+import it.ldaac.meteoOOP.service.MeteoService;
 import it.ldaac.meteoOOP.utilities.CoordParser;
 import it.ldaac.meteoOOP.utilities.DataParser;
 
 @RestController
 public class MeteoOOPController {
-	// ciao
-	@Autowired
+
 	MeteoService meteoservice = new MeteoService();
 	
 	@RequestMapping(value = "/testcitta", method = RequestMethod.POST)

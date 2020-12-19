@@ -95,17 +95,18 @@ public class DataParser extends Parser {
 	
 	
 	/**
+	 * Genera l'URL per chimare l'API di Openwheather Cities in circle
 	 * 
 	 * @param lat Latitudine
 	 * @param lon Longitudine
-	 * @param cnt Città da cercare
+	 * @param cnt Numero di città da cercare
 	 * @return URL sotto forma di stringa per chiamare l'API di OpenWeather
 	 */
 	public String URLGenerator(double lat, double lon, int cnt)
 	{
-		String URL = "https://api.openweathermap.org/data/2.5/find?";
-		URL += ("lat=" + lat);
-		URL += ("&lon=" + lon);
+		String URL = "https://api.openweathermap.org/data/2.5/find?"; //Crea URL 
+		URL += ("lat=" + lat);										  //Concateno i pezzi di stringa e i vari parametri per formare l'URL
+		URL += ("&lon=" + lon);											
 		URL += ("&cnt=" + cnt);
 		URL += ("&appid=" + super.getApiKey());
 		URL += "&units=metric";

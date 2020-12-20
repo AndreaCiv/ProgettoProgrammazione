@@ -45,4 +45,15 @@ public class MeteoOOPController {
 		}
 		return true;
 	}
+	
+	@RequestMapping(value = "/getFromFile", method = RequestMethod.GET)
+	public boolean caricaDaFile()
+	{
+		try {
+			meteoservice.caricaDaFile();
+		}catch (IOException | org.json.simple.parser.ParseException e) {
+			return false;
+		}
+		return true;
+	}
 }

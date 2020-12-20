@@ -37,7 +37,14 @@ public class MeteoService {
 	
 	public MeteoService()
 	{
-		this.ricerche = new Vector<Ricerca>();
+		//try {
+		//	this.caricaDaFile();
+		//}catch(IOException | ParseException e) {
+			this.ricerche = new Vector<Ricerca>();
+		//	e.printStackTrace();
+		//	System.out.println("Errore nel caricamento del database");
+		//	System.out.println("Inizializzo un database vuoto");
+		//}
 	}
 	
 	public void aggiungiRicerca (Ricerca ricerca)
@@ -65,13 +72,24 @@ public class MeteoService {
 		
 	}
 	
-	public void caricaDaFile() throws IOException
+	public void caricaDaFile() throws IOException, ParseException
 	{
 		Scanner in = new Scanner(new BufferedReader(new FileReader("database.JSON")));
 		
 		String inputLine = in.nextLine();
 		
 		JSONParser parser = new JSONParser();
+		
+		JSONObject salvataggio = (JSONObject) parser.parse(inputLine);
+		
+		JSONArray ricerche = (JSONArray) salvataggio.get("ricerche");
+		
+		this.ricerche = new Vector<Ricerca>();
+		
+		for(int i=0; i<ricerche.size(); i++)
+		{
+			this.ricerche.add(new Ricerca((JSONObject) ricerche.get(i)));
+		}
 		
 	}
 	public Risposta avviaRicerca(Richiesta richiesta) throws BadRequestException, ParseException

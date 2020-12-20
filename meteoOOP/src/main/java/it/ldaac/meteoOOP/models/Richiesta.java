@@ -44,8 +44,12 @@ public class Richiesta {
 	public Richiesta(JSONObject richiesta)
 	{
 		this.nomeCitta = (String) richiesta.get("nome_citta");
-		this.raggio = (int) richiesta.get("raggio");
-		this.cnt = (int) richiesta.get("cnt");
+		
+		String raggio = richiesta.get("raggio").toString();
+		this.raggio = Integer.parseInt(raggio);
+		
+		String cnt = richiesta.get("cnt").toString();
+		this.cnt = Integer.parseInt(cnt);
 	}
 
 	/**

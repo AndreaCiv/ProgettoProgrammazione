@@ -147,4 +147,17 @@ public class Citta {
 		return ritorno;
 	}
 	
+	
+	public double calcolaDistanza(Citta citta)
+	{
+		double fiA = Math.toRadians(this.lat);
+		double fiB = Math.toRadians(citta.lat);
+		double deltaLambda = Math.abs(Math.toRadians(this.lon - citta.lon));
+		
+		double d0 = Math.acos(Math.sin(fiA)*Math.sin(fiB) + Math.cos(fiA)*Math.cos(fiB)*Math.cos(deltaLambda));
+		
+		double distanza = d0*60*1.852;
+		
+		return distanza;
+	}
 }

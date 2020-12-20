@@ -3,6 +3,7 @@
  */
 package it.ldaac.meteoOOP.models;
 
+import java.util.Iterator;
 import java.util.Vector;
 
 import org.json.simple.JSONArray;
@@ -92,5 +93,31 @@ public class Ricerca {
 		ritorno.put("dati", dati);
 		
 		return ritorno;
+	}
+	
+	public boolean aggiornaDatiMeteo()
+	{
+		DataParser dataParser = new DataParser("1517261fd57d49d69ffd42658f042ff9");
+		Vector<Citta> cittaAggiornate = new Vector<Citta>();
+		try {
+		cittaAggiornate = dataParser.richiestaDatiMeteo(this.citta.elementAt(0).getLat(), this.citta.elementAt(0).getLon(), this.richiesta.getCnt());
+		} catch(BadRequestException | ParseException e) {
+			return false;
+		}
+		
+		for (Citta c : cittaAggiornate)
+		{
+			String nomeCitta = c.getNomeCitta();
+			Vector<DatoMeteo> nuovoDato = c.getDatiMeteo();
+			
+			for(int j=0; j<this.citta.size(); j++)
+			{
+				if(this.citta.elementAt(j).getNomeCitta().equals(nomeCitta))
+					this.citta.elementAt(j).aggiungiDatoMeteo(nuovoDato.elementAt(0));
+			}
+			
+		}
+		
+		return true;
 	}
 }

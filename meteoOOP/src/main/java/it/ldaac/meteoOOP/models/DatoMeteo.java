@@ -34,6 +34,20 @@ public class DatoMeteo {
 		this.data = new Date(dataUnix);
 	}
 	
+	public DatoMeteo(JSONObject datoMeteo)
+	{
+		String temperatura = datoMeteo.get("temperatura").toString();
+		this.temperatura = Double.parseDouble(temperatura);
+		
+		String temperaturaPercepita = datoMeteo.get("temperatura_percepita").toString();
+		this.temperaturaPercepita = Double.parseDouble(temperaturaPercepita);
+		
+		String velocitaVento = datoMeteo.get("velocita_vento").toString();
+		this.velocitaVento = Double.parseDouble(velocitaVento);
+		
+		this.data = new Date((long)datoMeteo.get("data"));
+	}
+	
 	/**
 	 * @return Temperatura in °C
 	 */
@@ -104,7 +118,7 @@ public class DatoMeteo {
 		ritorno.put("temperatura", this.temperatura);
 		ritorno.put("temperatura_percepita", this.temperaturaPercepita);
 		ritorno.put("velocita_vento", this.velocitaVento);
-		ritorno.put("date", this.data.getTime());
+		ritorno.put("data", this.data.getTime());
 		return ritorno;
 	}
 }

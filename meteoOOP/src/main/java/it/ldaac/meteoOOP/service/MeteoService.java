@@ -3,14 +3,18 @@
  */
 package it.ldaac.meteoOOP.service;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Scanner;
 import java.util.Vector;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 
@@ -61,6 +65,15 @@ public class MeteoService {
 		
 	}
 	
+	public void caricaDaFile() throws IOException
+	{
+		Scanner in = new Scanner(new BufferedReader(new FileReader("database.JSON")));
+		
+		String inputLine = in.nextLine();
+		
+		JSONParser parser = new JSONParser();
+		
+	}
 	public Risposta avviaRicerca(Richiesta richiesta) throws BadRequestException, ParseException
 	{
 		Ricerca ricerca = new Ricerca(richiesta);

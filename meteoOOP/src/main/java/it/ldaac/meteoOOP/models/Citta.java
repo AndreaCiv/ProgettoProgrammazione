@@ -36,7 +36,28 @@ public class Citta {
 		this.lon = lon;
 		this.datiMeteo = new Vector<DatoMeteo>();
 	}
-
+	
+	public Citta(JSONObject citta)
+	{
+		this.nomeCitta = (String) citta.get("nome_citta");
+		
+		this.id = (long) citta.get("id");
+		
+		String lat = citta.get("lat").toString();
+		this.lat = Double.parseDouble(lat);
+		
+		String lon = citta.get("lon").toString();
+		this.lon = Double.parseDouble(lon);
+		
+		this.datiMeteo = new Vector<DatoMeteo>();
+		
+		JSONArray datiMeteo = (JSONArray) citta.get("dati_meteo");
+		for(int i = 0; i<datiMeteo.size(); i++)
+		{
+			this.datiMeteo.add(new DatoMeteo((JSONObject) datiMeteo.get(i)));
+		}
+		
+	}
 	/**
 	 * @return Il nome della città
 	 */

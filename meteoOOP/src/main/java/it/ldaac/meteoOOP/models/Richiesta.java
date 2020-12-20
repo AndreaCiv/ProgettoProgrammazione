@@ -40,6 +40,13 @@ public class Richiesta {
 		this.raggio = raggio;
 		this.cnt = 50;
 	}
+	
+	public Richiesta(JSONObject richiesta)
+	{
+		this.nomeCitta = (String) richiesta.get("nome_citta");
+		this.raggio = (int) richiesta.get("raggio");
+		this.cnt = (int) richiesta.get("cnt");
+	}
 
 	/**
 	 * @return Il nome della città inserito dall'utente

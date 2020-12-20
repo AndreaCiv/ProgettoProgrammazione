@@ -41,7 +41,21 @@ public class Ricerca {
 		
 		this.id = this.citta.elementAt(0).getId();
 	}
-
+	
+	public Ricerca (JSONObject ricerca)
+	{
+		this.id = (long) ricerca.get("id_ricerca");
+		this.richiesta = new Richiesta((JSONObject) ricerca.get("info_richiesta"));
+		
+		this.citta = new Vector<Citta>();
+		
+		JSONArray dati = (JSONArray) ricerca.get("dati");
+		for(int i = 0; i<dati.size(); i++)
+		{
+			citta.add(new Citta((JSONObject) dati.get(i)));
+		}
+	}
+	
 	/**
 	 * @return ID della ricerca
 	 */

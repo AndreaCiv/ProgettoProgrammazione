@@ -3,6 +3,8 @@
  */
 package it.ldaac.meteoOOP.models;
 
+import org.json.simple.JSONObject;
+
 /**
  * @author andreacivitarese
  * @description Classe dove vengono salvati i dati della richiesta fatta dall'utente
@@ -81,5 +83,12 @@ public class Richiesta {
 		this.cnt = cnt;
 	}
 	
-	
+	public JSONObject toJSONObject()
+	{
+		JSONObject ritorno = new JSONObject();
+		ritorno.put("nome_citta", this.nomeCitta);
+		ritorno.put("raggio", this.raggio);
+		ritorno.put("cnt", this.cnt);
+		return ritorno;
+	}
 }

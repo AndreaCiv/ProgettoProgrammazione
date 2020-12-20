@@ -5,6 +5,9 @@ package it.ldaac.meteoOOP.models;
 
 import java.util.Vector;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 /**
  * @author andreacivitarese
  * @description Classe che definisce una città con la sua raccolta di dati meteo
@@ -105,6 +108,22 @@ public class Citta {
 	public void aggiungiDatoMeteo(DatoMeteo datoDaIns)
 	{
 		this.datiMeteo.add(datoDaIns);
+	}
+	
+	public JSONObject toJSONObject()
+	{
+		JSONObject ritorno = new JSONObject();
+		ritorno.put("nome_citta", this.nomeCitta);
+		ritorno.put("id", this.id);
+		ritorno.put("lat", this.lat);
+		ritorno.put("lon", this.lon);
+		JSONArray datiMeteo = new JSONArray();
+		for(DatoMeteo d:this.datiMeteo)
+		{
+			datiMeteo.add(d.toJSONObject());
+		}
+		ritorno.put("dati_meteo", datiMeteo);
+		return ritorno;
 	}
 	
 }

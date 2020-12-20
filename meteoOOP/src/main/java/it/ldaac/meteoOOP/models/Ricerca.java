@@ -5,6 +5,8 @@ package it.ldaac.meteoOOP.models;
 
 import java.util.Vector;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import it.ldaac.meteoOOP.exceptions.BadRequestException;
@@ -59,5 +61,22 @@ public class Ricerca {
 	 */
 	public Vector<Citta> getCitta() {
 		return citta;
+	}
+	
+	public JSONObject toJSONObject()
+	{
+		JSONObject ritorno = new JSONObject();
+		ritorno.put("id_ricerca", this.id);
+		ritorno.put("info_richiesta", this.richiesta.toJSONObject());
+		
+		JSONArray dati = new JSONArray();
+		for(Citta c : this.citta)
+		{
+			dati.add(c.toJSONObject());
+		}
+		
+		ritorno.put("dati", dati);
+		
+		return ritorno;
 	}
 }

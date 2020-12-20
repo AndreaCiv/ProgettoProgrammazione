@@ -1,5 +1,6 @@
 package it.ldaac.meteoOOP.controller;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.Map;
 import java.util.Vector;
@@ -16,30 +17,32 @@ import it.ldaac.meteoOOP.exceptions.BadRequestException;
 import it.ldaac.meteoOOP.models.Citta;
 import it.ldaac.meteoOOP.models.DatoMeteo;
 import it.ldaac.meteoOOP.models.Richiesta;
+import it.ldaac.meteoOOP.models.Risposta;
 import it.ldaac.meteoOOP.service.MeteoService;
 import it.ldaac.meteoOOP.utilities.CoordParser;
 import it.ldaac.meteoOOP.utilities.DataParser;
 
 @RestController
 public class MeteoOOPController {
-
-	MeteoService meteoservice = new MeteoService();
+	
+	@Autowired
+	private MeteoService meteoservice;
 	
 	@RequestMapping(value = "/testcitta", method = RequestMethod.POST)
-	public Vector<Citta> test(@RequestBody JSONObject richiesta) throws org.json.simple.parser.ParseException
+	public Risposta test(@RequestBody JSONObject body) throws org.json.simple.parser.ParseException, BadRequestException
 	{
-		CoordParser coordParser = new CoordParser("1517261fd57d49d69ffd42658f042ff9");
-		String nomeCitta = (String) richiesta.get("name");
-		double coord[] = new double[2];
-		coord = coordParser.richiestaCoord(nomeCitta);
-		
-		DataParser dataParser = new DataParser("1517261fd57d49d69ffd42658f042ff9");
-		Vector<Citta> risposta = new Vector<Citta>();
+		Richiesta richiesta = new Richiesta((String) body.get("nome"), (int) body.get("raggio"));
+		return meteoservice.avviaRicerca(richiesta);
+	}
+	
+	@RequestMapping(value = "/save", method = RequestMethod.GET)
+	public boolean save()
+	{
 		try {
-			risposta = dataParser.richiestaDatiMeteo(coord[0], coord[1], 50);
-		}catch (BadRequestException e) {
-		e.printStackTrace();
+			meteoservice.salvaSuFile();
+		}catch(IOException e) {
+			return false;
 		}
-		return risposta;
+		return true;
 	}
 }

@@ -2,6 +2,8 @@ package it.ldaac.meteoOOP.models;
 
 import java.util.Date;
 
+import org.json.simple.JSONObject;
+
 /**
  * @author andreacivitarese
  *
@@ -94,5 +96,15 @@ public class DatoMeteo {
 			return true;
 		else
 			return false;
+	}
+	
+	public JSONObject toJSONObject()
+	{
+		JSONObject ritorno = new JSONObject();
+		ritorno.put("temperatura", this.temperatura);
+		ritorno.put("temperatura_percepita", this.temperaturaPercepita);
+		ritorno.put("velocita_vento", this.velocitaVento);
+		ritorno.put("date", this.data.getTime());
+		return ritorno;
 	}
 }

@@ -7,7 +7,7 @@
 Lo scopo di questo progetto è quello di offrire un servizio meteo all'utente con cui scelta a suo piacimento una città, si visualizzino tutte le informazioni attuali relative al vento e temperatura delle città circostanti a quella scelta.
 
 
-## L'applicazione
+### L'applicazione
 
 
 <img src="/Users/luca/Desktop/OOP.jpg">

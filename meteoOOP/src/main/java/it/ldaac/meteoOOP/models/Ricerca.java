@@ -3,6 +3,8 @@
  */
 package it.ldaac.meteoOOP.models;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -22,8 +24,8 @@ import it.ldaac.meteoOOP.utilities.DataParser;
  *
  */
 public class Ricerca {
+	
 	private long id;
-	private Richiesta richiesta;
 	private Vector<Citta> citta;
 	
 	/**
@@ -31,11 +33,11 @@ public class Ricerca {
 	 * @param richiesta Richiesta tramite la quale viene generata la ricerca
 	 * @throws BadRequestException
 	 * @throws ParseException
+	 * @throws IOException 
+	 * @throws MalformedURLException 
 	 */
-	public Ricerca(Richiesta richiesta, CoordParser coordParser, DataParser dataParser) throws BadRequestException, ParseException
+	public Ricerca(Richiesta richiesta, CoordParser coordParser, DataParser dataParser) throws BadRequestException, ParseException, MalformedURLException, IOException
 	{
-		this.richiesta = richiesta;
-		
 		double coordCentrali[] = new double[2];
 		coordCentrali = coordParser.richiestaCoord(richiesta.getNomeCitta());
 		
@@ -47,8 +49,6 @@ public class Ricerca {
 	public Ricerca (JSONObject ricerca)
 	{
 		this.id = (long) ricerca.get("id_ricerca");
-		this.richiesta = new Richiesta((JSONObject) ricerca.get("info_richiesta"));
-		
 		this.citta = new Vector<Citta>();
 		
 		JSONArray dati = (JSONArray) ricerca.get("dati");
@@ -66,13 +66,6 @@ public class Ricerca {
 	}
 
 	/**
-	 * @return La richiesta con la quale è stata generata questa ricerca
-	 */
-	public Richiesta getRichiesta() {
-		return richiesta;
-	}
-
-	/**
 	 * @return Vettore di città che fanno parte della ricerca
 	 */
 	public Vector<Citta> getCitta() {
@@ -83,7 +76,6 @@ public class Ricerca {
 	{
 		JSONObject ritorno = new JSONObject();
 		ritorno.put("id_ricerca", this.id);
-		ritorno.put("info_richiesta", this.richiesta.toJSONObject());
 		
 		JSONArray dati = new JSONArray();
 		for(Citta c : this.citta)
@@ -100,8 +92,8 @@ public class Ricerca {
 	{
 		Vector<Citta> cittaAggiornate = new Vector<Citta>();
 		try {
-			cittaAggiornate = dataParser.richiestaDatiMeteo(this.citta.elementAt(0).getLat(), this.citta.elementAt(0).getLon(), this.richiesta.getCnt());
-		} catch(BadRequestException | ParseException e) {
+			cittaAggiornate = dataParser.richiestaDatiMeteo(this.citta.elementAt(0).getLat(), this.citta.elementAt(0).getLon(), 50);
+		} catch(BadRequestException | ParseException | IOException e) {
 			return false;
 		}
 		
@@ -115,13 +107,11 @@ public class Ricerca {
 				if(this.citta.elementAt(j).getNomeCitta().equals(nomeCitta))
 					this.citta.elementAt(j).aggiungiDatoMeteo(nuovoDato.elementAt(0));
 			}
-			
 		}
-		
 		return true;
 	}
 	
-	public void RicercaDatiDueOre(long periodoAggiornamentoDati,long durata, DataParser dataParser)
+	public void AggiungiDatiDueOre(long periodoAggiornamentoDati,long durata, DataParser dataParser)
 	{
 		Timer timer = new Timer();
 		AggiornaDatiMeteoTask task = new AggiornaDatiMeteoTask(this, durata, dataParser);

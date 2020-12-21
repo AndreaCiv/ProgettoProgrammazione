@@ -9,7 +9,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.net.MalformedURLException;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -123,11 +123,18 @@ public class MeteoService {
 		}
 		
 	}
-	public Risposta avviaRicerca(Richiesta richiesta) throws BadRequestException, ParseException
+	public Risposta avviaRicerca(Richiesta richiesta) throws BadRequestException, ParseException, MalformedURLException, IOException
 	{
 		Ricerca ricerca = new Ricerca(richiesta, this.coordParser, this.dataParser);
-		ricerche.add(ricerca);
-		ricerca.RicercaDatiDueOre(periodoAggiornamentoDati, richiesta.getDurataAggiornamentoDati(), dataParser);
+		
+		for(int i = 0; i<this.ricerche.size(); i++)
+			if (this.ricerche.elementAt(i).getId() == ricerca.getId())
+				this.ricerche.remove(i);
+		
+		this.ricerche.add(ricerca);
+				
+		ricerca.AggiungiDatiDueOre(periodoAggiornamentoDati, richiesta.getDurataAggiornamentoDati(), dataParser);
+		
 		return new Risposta("Prova", ricerca.getId(), filtri.filtraCittaInNumero(filtri.filtraCittaInRaggio(ricerca.getCitta(), richiesta.getRaggio()), richiesta.getCnt()));
 	}
 	

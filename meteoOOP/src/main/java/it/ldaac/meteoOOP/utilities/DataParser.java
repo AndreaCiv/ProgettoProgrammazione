@@ -31,67 +31,52 @@ public class DataParser extends Parser {
 		super(apiKey);
 	}
 
-	public Vector<Citta> richiestaDatiMeteo (double lat, double lon, int cnt) throws org.json.simple.parser.ParseException, BadRequestException
+	public Vector<Citta> richiestaDatiMeteo (double lat, double lon, int cnt) throws org.json.simple.parser.ParseException, BadRequestException, MalformedURLException, IOException
 	{
 		JSONParser parser = new JSONParser();
 		Vector<Citta> ritorno = new Vector<Citta>();
 
-		try {
-			URLConnection openWeather = new URL(this.URLGenerator(lat, lon, cnt)).openConnection();
-			BufferedReader in = new BufferedReader(new InputStreamReader(openWeather.getInputStream()));
-			
-			String inputLine = in.readLine();
-			
-			JSONObject risposta = (JSONObject)parser.parse(inputLine);
-			
-			String cod = (String) risposta.get("cod");
-			if (cod == "200")
-				throw new BadRequestException();
-			
-			JSONArray arrayCitta = (JSONArray) risposta.get("list");
-			
-			for(int i=0; i<arrayCitta.size(); i++)
-			{
-				JSONObject citta = (JSONObject) arrayCitta.get(i);
-				long id = (long) citta.get("id");
-				String nomeCitta = (String) citta.get("name");
-				
-				JSONObject coord = (JSONObject) citta.get("coord");	
-				String lati = coord.get("lat").toString();
-				double latitude = Double.parseDouble(lati);
-				
-				String longi = coord.get("lon").toString();
-				double longitude = Double.parseDouble(longi);
+		URLConnection openWeather = new URL(this.URLGenerator(lat, lon, cnt)).openConnection();
+		BufferedReader in = new BufferedReader(new InputStreamReader(openWeather.getInputStream()));
 		
-				Citta city = new Citta(nomeCitta, id, latitude, longitude);
+		String inputLine = in.readLine();
+		
+		JSONObject risposta = (JSONObject)parser.parse(inputLine);
+			
+		String cod = (String) risposta.get("cod");
+		if (cod == "200")
+			throw new BadRequestException();
+		
+		JSONArray arrayCitta = (JSONArray) risposta.get("list");
+		
+		for(int i=0; i<arrayCitta.size(); i++)
+		{
+			JSONObject citta = (JSONObject) arrayCitta.get(i);
+			long id = (long) citta.get("id");
+			String nomeCitta = (String) citta.get("name");
+			
+			JSONObject coord = (JSONObject) citta.get("coord");	
+			double latitude = Double.parseDouble(coord.get("lat").toString());
+			double longitude = Double.parseDouble(coord.get("lon").toString());	
+			
+			Citta city = new Citta(nomeCitta, id, latitude, longitude);
+			
+			JSONObject main = (JSONObject) citta.get("main");
+			double temperatura = Double.parseDouble(main.get("temp").toString());
+			double temperaturaPerc = Double.parseDouble(main.get("feels_like").toString());	
+			long dt = (long) citta.get("dt");
 				
-				JSONObject main = (JSONObject) citta.get("main");
-				String temp = main.get("temp").toString();
-				double temperatura = Double.parseDouble(temp);
-				String tempPerc = main.get("feels_like").toString();
-				double temperaturaPerc = Double.parseDouble(tempPerc);
+			JSONObject wind = (JSONObject) citta.get("wind");
+			double velVento = Double.parseDouble(wind.get("speed").toString());
 				
+			DatoMeteo datoMeteo = new DatoMeteo(temperatura, temperaturaPerc, velVento, (dt*1000L));
 				
+			city.aggiungiDatoMeteo(datoMeteo);
 				
-				long dt = (long) citta.get("dt");
-				
-				JSONObject wind = (JSONObject) citta.get("wind");
-				String velocitaVento = wind.get("speed").toString();
-				double velVento = Double.parseDouble(velocitaVento);
-				DatoMeteo datoMeteo = new DatoMeteo(temperatura, temperaturaPerc, velVento, (dt*1000L));
-				
-				city.aggiungiDatoMeteo(datoMeteo);
-				
-				ritorno.add(city);
-			}
-		}catch (MalformedURLException e) {
-			e.printStackTrace();
-		}catch(IOException e) {
-			e.printStackTrace();
+			ritorno.add(city);
 		}
-		return ritorno;
-		
-	}
+	return ritorno;
+}
 	
 	
 	/**

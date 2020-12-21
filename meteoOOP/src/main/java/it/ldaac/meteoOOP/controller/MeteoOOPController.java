@@ -1,6 +1,7 @@
 package it.ldaac.meteoOOP.controller;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.text.ParseException;
 import java.util.Map;
 import java.util.Vector;
@@ -30,7 +31,7 @@ public class MeteoOOPController {
 	private MeteoService meteoservice;
 	
 	@RequestMapping(value = "/testcitta", method = RequestMethod.POST)
-	public Risposta test(@RequestBody JSONObject body) throws org.json.simple.parser.ParseException, BadRequestException
+	public Risposta test(@RequestBody JSONObject body) throws org.json.simple.parser.ParseException, BadRequestException, MalformedURLException, IOException
 	{
 		int cnt;
 		try {

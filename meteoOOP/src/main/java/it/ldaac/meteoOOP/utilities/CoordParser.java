@@ -16,7 +16,7 @@ import org.json.simple.parser.ParseException;
 
 /**
  * @author andreacivitarese
- * @description Parser per otennere le coordinate della città, centro del cerchio di ricerca, inserita
+ * Parser per otenere le coordinate della città, centro del cerchio di ricerca, inserita
  * dall'utente
  */
 public class CoordParser extends Parser {
@@ -30,30 +30,25 @@ public class CoordParser extends Parser {
 	 * @param nomeCitta Nome della città della quale vogliamo sapere le coordinate
 	 * @return Le coordinate della città cercata in un vettore di double, nel quale, alla posizione 0 c'è 
 	 * la latitudine, alla posizione 1 la longitudine;
+	 * @throws IOException 
+	 * @throws MalformedURLException 
+	 * @throws ParseException 
 	 */
-	public double[] richiestaCoord(String nomeCitta)
+	public double[] richiestaCoord(String nomeCitta) throws MalformedURLException, IOException, ParseException
 	{
 		JSONParser parser = new JSONParser();
 		double coordinate[] = new double[2];
-		try {
-			URLConnection openWeather = new URL(this.URLGenerator(nomeCitta)).openConnection();
-			BufferedReader in = new BufferedReader(new InputStreamReader(openWeather.getInputStream()));
-			
-			String inputLine = in.readLine();
-			
-			JSONObject risposta = (JSONObject) parser.parse(inputLine);
-			JSONObject coord = (JSONObject) risposta.get("coord");
-			
-			coordinate[0] = (double) coord.get("lat");
-			coordinate[1] = (double) coord.get("lon");
-			
-		}catch (ParseException e) {
-			e.printStackTrace();
-		}catch (MalformedURLException e) {
-			e.printStackTrace();
-		}catch (IOException e) {
-			e.printStackTrace();
-		}
+		URLConnection openWeather = new URL(this.URLGenerator(nomeCitta)).openConnection();
+		BufferedReader in = new BufferedReader(new InputStreamReader(openWeather.getInputStream()));
+		
+		String inputLine = in.readLine();
+		
+		JSONObject risposta = (JSONObject) parser.parse(inputLine);
+		JSONObject coord = (JSONObject) risposta.get("coord");
+		
+		coordinate[0] = Double.parseDouble(coord.get("lat").toString());
+		coordinate[1] = Double.parseDouble(coord.get("lon").toString());
+
 		return coordinate;
 	}
 	

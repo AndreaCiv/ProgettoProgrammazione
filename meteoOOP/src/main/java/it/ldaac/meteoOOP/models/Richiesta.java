@@ -13,23 +13,9 @@ public class Richiesta {
 	private String nomeCitta;
 	private int raggio;
 	private int cnt;
+	private long durataRaccoltaDati;
 	
-	private long durataAggiornamentoDati;
 	
-	/**
-	 * @return the durataAggiornamentoDati
-	 */
-	public long getDurataAggiornamentoDati() {
-		return durataAggiornamentoDati;
-	}
-
-	/**
-	 * @param durataAggiornamentoDati the durataAggiornamentoDati to set
-	 */
-	public void setDurataAggiornamentoDati(long durataAggiornamentoDati) {
-		this.durataAggiornamentoDati = durataAggiornamentoDati;
-	}
-
 	/**
 	 * @constructor per Richiesta nel caso l'utente fornisse il numero di città da ricercare
 	 * 
@@ -37,11 +23,12 @@ public class Richiesta {
 	 * @param raggio    Raggio di ricerca in km
 	 * @param cnt       Numero di città da ricercare
 	 */
-	public Richiesta(String nomeCitta, int raggio, int cnt)
+	public Richiesta(String nomeCitta, int raggio, int cnt, long durataRaccoltaDati)
 	{
 		this.nomeCitta = nomeCitta;
 		this.raggio = raggio;
 		this.cnt = cnt;
+		this.durataRaccoltaDati = durataRaccoltaDati;
 	}
 	
 	/**
@@ -50,11 +37,12 @@ public class Richiesta {
 	 * @param nomeCitta Nome della città centro del cerchio di ricerca
 	 * @param raggio    Raggio di ricerca in km
 	 */
-	public Richiesta(String nomeCitta, int raggio)
+	public Richiesta(String nomeCitta, int raggio, long durataRaccoltaDati)
 	{
 		this.nomeCitta = nomeCitta;
 		this.raggio = raggio;
 		this.cnt = 50;
+		this.durataRaccoltaDati = durataRaccoltaDati;
 	}
 	
 	public Richiesta(JSONObject richiesta)
@@ -66,6 +54,8 @@ public class Richiesta {
 		
 		String cnt = richiesta.get("cnt").toString();
 		this.cnt = Integer.parseInt(cnt);
+		
+		this.durataRaccoltaDati = (long) richiesta.get("durata_raccolta_dati");
 	}
 
 	/**
@@ -110,12 +100,27 @@ public class Richiesta {
 		this.cnt = cnt;
 	}
 	
+	/**
+	 * @return the durataRaccoltaDati
+	 */
+	public long getDurataAggiornamentoDati() {
+		return durataRaccoltaDati;
+	}
+
+	/**
+	 * @param durataRaccoltaDati the durataAggiornamentoDati to set
+	 */
+	public void setDurataAggiornamentoDati(long durataRaccoltaDati) {
+		this.durataRaccoltaDati = durataRaccoltaDati;
+	}
+
 	public JSONObject toJSONObject()
 	{
 		JSONObject ritorno = new JSONObject();
 		ritorno.put("nome_citta", this.nomeCitta);
 		ritorno.put("raggio", this.raggio);
 		ritorno.put("cnt", this.cnt);
+		ritorno.put("durata_raccolta_dati", this.durataRaccoltaDati);
 		return ritorno;
 	}
 }

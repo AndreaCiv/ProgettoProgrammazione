@@ -27,7 +27,10 @@ public class AggiornaDatiMeteoTask extends TimerTask {
 	public void run() {
 		
 		if(System.currentTimeMillis() < this.fine)
+		{
 			this.ricerca.aggiornaDatiMeteo(this.dataParser);
+			System.out.println("Dati aggiornati");
+		}
 		else
 			this.cancel();
 	}

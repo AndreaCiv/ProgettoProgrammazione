@@ -123,6 +123,13 @@ public class Citta {
 	}
 	
 	/**
+	 * @param datiMeteo the datiMeteo to set
+	 */
+	public void setDatiMeteo(Vector<DatoMeteo> datiMeteo) {
+		this.datiMeteo = datiMeteo;
+	}
+	
+	/**
 	 * Metodo per aggiungere un dato meteo al vettore dei dati della città
 	 * @param datoDaIns Dato meteo da inserire nella città
 	 */
@@ -160,4 +167,6 @@ public class Citta {
 		
 		return distanza;
 	}
+
+	
 }

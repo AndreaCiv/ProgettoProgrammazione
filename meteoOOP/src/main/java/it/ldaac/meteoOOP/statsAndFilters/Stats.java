@@ -5,6 +5,8 @@ package it.ldaac.meteoOOP.statsAndFilters;
 
 import java.util.Vector;
 
+import org.json.simple.JSONObject;
+
 import it.ldaac.meteoOOP.models.Citta;
 import it.ldaac.meteoOOP.models.DatoMeteo;
 
@@ -65,35 +67,100 @@ public class Stats {
 		return (sommaScartiQuadMedi/dati.size());
 	}
 	
-	public Vector<Double> calcolaStats(Vector<DatoMeteo> dati, boolean temp, boolean tempPerc, boolean velVento)
+	public Vector<Double> calcolaStats(Vector<DatoMeteo> dati)
 	{
 		Vector<Double> stats = new Vector<Double>();
 		
-		if (temp) {
-			stats.add(this.calcolaTempMedia(dati));
-			stats.add(this.calcolaVarianzaTemp(dati));
-		} else {
-			stats.add((double) 0);
-			stats.add((double) 0);
-		}
+		stats.add(this.calcolaTempMedia(dati));
+		stats.add(this.calcolaVarianzaTemp(dati));	
+
+		stats.add(this.calcolaTempPercMedia(dati));
+		stats.add(this.calcolaVarianzaTempPerc(dati));
 		
-		
-		if (tempPerc) {
-			stats.add(this.calcolaTempPercMedia(dati));
-			stats.add(this.calcolaVarianzaTempPerc(dati));
-		} else {
-			stats.add((double) 0);
-			stats.add((double) 0);
-		}
-		
-		if (velVento) {
-			stats.add(this.calcolaVelVentoMedia(dati));
-			stats.add(this.calcolaVarianzaVelVento(dati));
-		} else {
-			stats.add((double) 0);
-			stats.add((double) 0);
-		}
-		
+		stats.add(this.calcolaVelVentoMedia(dati));
+		stats.add(this.calcolaVarianzaVelVento(dati));
+			
 		return stats;
+	}
+	
+	public Citta maxTempMedia(Vector<Citta> daAnalizzare)
+	{
+		Citta ritorno = daAnalizzare.elementAt(0);
+		for(Citta c : daAnalizzare)
+			if(this.calcolaTempMedia(c.getDatiMeteo()) > this.calcolaTempMedia(ritorno.getDatiMeteo()))
+				ritorno = c;
+		return ritorno;
+	}
+	
+	public Citta minTempMedia(Vector<Citta> daAnalizzare)
+	{
+		Citta ritorno = daAnalizzare.elementAt(0);
+		for(Citta c : daAnalizzare)
+			if(this.calcolaTempMedia(c.getDatiMeteo()) < this.calcolaTempMedia(ritorno.getDatiMeteo()))
+				ritorno = c;
+		return ritorno;
+	}
+	
+	public Citta maxTempPercMedia(Vector<Citta> daAnalizzare)
+	{
+		Citta ritorno = daAnalizzare.elementAt(0);
+		for(Citta c : daAnalizzare)
+			if(this.calcolaTempPercMedia(c.getDatiMeteo()) > this.calcolaTempPercMedia(ritorno.getDatiMeteo()))
+				ritorno = c;	
+		return ritorno;
+	}
+	
+	public Citta minTempPercMedia(Vector<Citta> daAnalizzare)
+	{
+		Citta ritorno = daAnalizzare.elementAt(0);
+		for(Citta c : daAnalizzare)
+			if(this.calcolaTempPercMedia(c.getDatiMeteo()) < this.calcolaTempPercMedia(ritorno.getDatiMeteo()))
+				ritorno = c;
+		return ritorno;
+	}
+	
+	public Citta maxVelVentoMedia(Vector<Citta> daAnalizzare)
+	{
+		Citta ritorno = daAnalizzare.elementAt(0);
+		for(Citta c : daAnalizzare)
+			if(this.calcolaVelVentoMedia(c.getDatiMeteo()) > this.calcolaVelVentoMedia(ritorno.getDatiMeteo()))
+				ritorno = c;
+		return ritorno;
+	}
+	
+	public Citta minVelVentoMedia(Vector<Citta> daAnalizzare)
+	{
+		Citta ritorno = daAnalizzare.elementAt(0);
+		for(Citta c : daAnalizzare)
+			if(this.calcolaVelVentoMedia(c.getDatiMeteo()) < this.calcolaVelVentoMedia(ritorno.getDatiMeteo()))
+				ritorno = c;	
+		return ritorno;
+	}
+	
+	public Citta maxVarTemp(Vector<Citta> daAnalizzare)
+	{
+		Citta ritorno = daAnalizzare.elementAt(0);
+		for(Citta c : daAnalizzare)
+			if(this.calcolaVarianzaTemp(c.getDatiMeteo()) > this.calcolaVarianzaTemp(ritorno.getDatiMeteo()))
+				ritorno = c;
+		return ritorno;
+	}
+	
+	public Citta maxVarTempPerc(Vector<Citta> daAnalizzare)
+	{
+		Citta ritorno = daAnalizzare.elementAt(0);
+		for(Citta c : daAnalizzare)
+			if(this.calcolaVarianzaTempPerc(c.getDatiMeteo()) > this.calcolaVarianzaTempPerc(ritorno.getDatiMeteo()))
+				ritorno = c;
+		return ritorno;
+	}
+	
+	public Citta maxVarVelVento(Vector<Citta> daAnalizzare)
+	{
+		Citta ritorno = daAnalizzare.elementAt(0);
+		for(Citta c : daAnalizzare)
+			if(this.calcolaVarianzaVelVento(c.getDatiMeteo()) > this.calcolaVarianzaVelVento(ritorno.getDatiMeteo()))
+				ritorno = c;
+		return ritorno;
 	}
 }

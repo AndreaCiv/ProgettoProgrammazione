@@ -7,9 +7,9 @@ package it.ldaac.meteoOOP.exceptions;
  * @author andreacivitarese
  *
  */
-public class IdNotValidException extends Exception {
+public class IdNotFoundException extends Exception {
 
-	public IdNotValidException() {
+	public IdNotFoundException() {
 		super("id della ricerca non trovato");
 	}
 }

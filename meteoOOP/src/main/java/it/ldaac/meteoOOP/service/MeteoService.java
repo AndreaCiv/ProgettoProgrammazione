@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
 
 import it.ldaac.meteoOOP.exceptions.BadRequestException;
 import it.ldaac.meteoOOP.exceptions.DateNotValidException;
-import it.ldaac.meteoOOP.exceptions.IdNotValidException;
+import it.ldaac.meteoOOP.exceptions.IdNotFoundException;
 import it.ldaac.meteoOOP.exceptions.StatsNotValidException;
 import it.ldaac.meteoOOP.models.Citta;
 import it.ldaac.meteoOOP.models.Ricerca;
@@ -169,7 +169,7 @@ public class MeteoService {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public JSONObject generaStats(long idRicerca, String tipoStats, String data1, String data2, int raggio, int cnt) throws StatsNotValidException, IdNotValidException, DateNotValidException 
+	public JSONObject generaStats(long idRicerca, String tipoStats, String data1, String data2, int raggio, int cnt) throws StatsNotValidException, IdNotFoundException, DateNotValidException 
 	{
 		Vector<Citta> cittaFiltrate = new Vector<Citta>();
 		try {
@@ -178,7 +178,7 @@ public class MeteoService {
 			else
 				cittaFiltrate = filtri.filtraCittaInNumero(filtri.filtraCittaInRaggio(this.ottieniRicerca(idRicerca).getCitta(), raggio), cnt);
 		} catch (Exception e) {
-			throw new IdNotValidException();
+			throw new IdNotFoundException();
 		}
 		
 		for(Citta c : cittaFiltrate)

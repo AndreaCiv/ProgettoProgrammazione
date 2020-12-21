@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import it.ldaac.meteoOOP.exceptions.BadRequestException;
 import it.ldaac.meteoOOP.exceptions.CntNotValidException;
 import it.ldaac.meteoOOP.exceptions.DateNotValidException;
-import it.ldaac.meteoOOP.exceptions.IdNotValidException;
+import it.ldaac.meteoOOP.exceptions.IdNotFoundException;
 import it.ldaac.meteoOOP.exceptions.RaggioNotValidException;
 import it.ldaac.meteoOOP.exceptions.StatsNotValidException;
 import it.ldaac.meteoOOP.models.Ricerca;
@@ -54,7 +54,7 @@ public class MeteoOOPController {
 		try {
 			durataRaccolta = Long.parseLong(body.get("durata_raccolta").toString());
 		} catch (NullPointerException e) {
-			durataRaccolta = 86400000L;
+			durataRaccolta = 172800000L;
 		}
 		
 		Richiesta richiesta = new Richiesta(nomeCitta, raggio, cnt, durataRaccolta);
@@ -62,7 +62,7 @@ public class MeteoOOPController {
 	}
 	
 	@RequestMapping(value = "/stats", method = RequestMethod.POST)
-	public JSONObject stats(@RequestBody JSONObject body) throws DateNotValidException, StatsNotValidException, IdNotValidException, RaggioNotValidException, CntNotValidException
+	public JSONObject stats(@RequestBody JSONObject body) throws DateNotValidException, StatsNotValidException, IdNotFoundException, RaggioNotValidException, CntNotValidException
 	{	
 		long idRicerca = Long.parseLong(body.get("id").toString());
 		String tipoStats = (String) body.get("tipo");

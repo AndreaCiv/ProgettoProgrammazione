@@ -14,6 +14,22 @@ public class Richiesta {
 	private int raggio;
 	private int cnt;
 	
+	private long durataAggiornamentoDati;
+	
+	/**
+	 * @return the durataAggiornamentoDati
+	 */
+	public long getDurataAggiornamentoDati() {
+		return durataAggiornamentoDati;
+	}
+
+	/**
+	 * @param durataAggiornamentoDati the durataAggiornamentoDati to set
+	 */
+	public void setDurataAggiornamentoDati(long durataAggiornamentoDati) {
+		this.durataAggiornamentoDati = durataAggiornamentoDati;
+	}
+
 	/**
 	 * @constructor per Richiesta nel caso l'utente fornisse il numero di città da ricercare
 	 * 

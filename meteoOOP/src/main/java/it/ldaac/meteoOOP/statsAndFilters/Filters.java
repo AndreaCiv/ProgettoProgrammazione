@@ -3,6 +3,7 @@ package it.ldaac.meteoOOP.statsAndFilters;
 import java.util.Date;
 import java.util.Vector;
 
+import it.ldaac.meteoOOP.models.Citta;
 import it.ldaac.meteoOOP.models.DatoMeteo;
 
 public class Filters {
@@ -18,5 +19,14 @@ public class Filters {
 				risposta.add(daFiltrare.elementAt(i));
 		}
 		return risposta;
+	}
+	
+	public Vector<Citta> filtraCitta(Vector<Citta> daFiltrare, int raggio)
+	{
+		Vector<Citta> cittaFiltrate = new Vector<Citta>();
+		for(Citta c : daFiltrare)
+			if(c.calcolaDistanza(daFiltrare.elementAt(0)) < raggio)
+				cittaFiltrate.add(c);
+		return cittaFiltrate;
 	}
 }

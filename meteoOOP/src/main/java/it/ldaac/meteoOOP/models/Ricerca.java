@@ -4,6 +4,8 @@
 package it.ldaac.meteoOOP.models;
 
 import java.util.Iterator;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.Vector;
 
 import org.json.simple.JSONArray;
@@ -11,6 +13,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import it.ldaac.meteoOOP.exceptions.BadRequestException;
+import it.ldaac.meteoOOP.utilities.AggiornaDatiMeteoTask;
 import it.ldaac.meteoOOP.utilities.CoordParser;
 import it.ldaac.meteoOOP.utilities.DataParser;
 
@@ -116,5 +119,12 @@ public class Ricerca {
 		}
 		
 		return true;
+	}
+	
+	public void RicercaDatiDueOre(long periodoAggiornamentoDati,long durata, DataParser dataParser)
+	{
+		Timer timer = new Timer();
+		AggiornaDatiMeteoTask task = new AggiornaDatiMeteoTask(this, durata, dataParser);
+		timer.scheduleAtFixedRate(task, periodoAggiornamentoDati, periodoAggiornamentoDati);
 	}
 }

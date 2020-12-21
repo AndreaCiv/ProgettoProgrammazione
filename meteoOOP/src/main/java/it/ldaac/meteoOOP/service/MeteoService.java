@@ -34,17 +34,21 @@ import it.ldaac.meteoOOP.utilities.DataParser;
 public class MeteoService {
 	
 	private Vector<Ricerca> ricerche;
+	private DataParser dataParser;
+	private CoordParser coordParser;
 	
 	public MeteoService()
 	{
-		//try {
-		//	this.caricaDaFile();
-		//}catch(IOException | ParseException e) {
+		try {
 			this.ricerche = new Vector<Ricerca>();
-		//	e.printStackTrace();
-		//	System.out.println("Errore nel caricamento del database");
-		//	System.out.println("Inizializzo un database vuoto");
-		//}
+			this.caricaDaFile();
+			System.out.println("Database caricato dal file");
+		}catch(IOException | ParseException e) {
+			this.ricerche = new Vector<Ricerca>();
+			e.printStackTrace();
+			System.out.println("Errore nel caricamento del database");
+			System.out.println("Inizializzo un database vuoto");
+		}
 	}
 	
 	public void aggiungiRicerca (Ricerca ricerca)
@@ -94,8 +98,18 @@ public class MeteoService {
 	}
 	public Risposta avviaRicerca(Richiesta richiesta) throws BadRequestException, ParseException
 	{
-		Ricerca ricerca = new Ricerca(richiesta);
+		Ricerca ricerca = new Ricerca(richiesta, this.coordParser, this.dataParser);
 		ricerche.add(ricerca);
 		return new Risposta("Prova", ricerca.getId(), ricerca.getCitta());
+	}
+	
+	public Vector<Ricerca> getDataBase()
+	{
+		return this.ricerche;
+	}
+	
+	public void removeAll()
+	{
+		this.ricerche.removeAllElements();
 	}
 }

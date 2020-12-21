@@ -29,15 +29,13 @@ public class Ricerca {
 	 * @throws BadRequestException
 	 * @throws ParseException
 	 */
-	public Ricerca(Richiesta richiesta) throws BadRequestException, ParseException
+	public Ricerca(Richiesta richiesta, CoordParser coordParser, DataParser dataParser) throws BadRequestException, ParseException
 	{
 		this.richiesta = richiesta;
 		
-		CoordParser coordParser = new CoordParser("1517261fd57d49d69ffd42658f042ff9");
 		double coordCentrali[] = new double[2];
 		coordCentrali = coordParser.richiestaCoord(richiesta.getNomeCitta());
 		
-		DataParser dataParser = new DataParser("1517261fd57d49d69ffd42658f042ff9");
 		this.citta = dataParser.richiestaDatiMeteo(coordCentrali[0], coordCentrali[1], 50);
 		
 		this.id = this.citta.elementAt(0).getId();
@@ -95,9 +93,8 @@ public class Ricerca {
 		return ritorno;
 	}
 	
-	public boolean aggiornaDatiMeteo()
+	public boolean aggiornaDatiMeteo(DataParser dataParser)
 	{
-		DataParser dataParser = new DataParser("1517261fd57d49d69ffd42658f042ff9");
 		Vector<Citta> cittaAggiornate = new Vector<Citta>();
 		try {
 		cittaAggiornate = dataParser.richiestaDatiMeteo(this.citta.elementAt(0).getLat(), this.citta.elementAt(0).getLon(), this.richiesta.getCnt());

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import it.ldaac.meteoOOP.exceptions.BadRequestException;
 import it.ldaac.meteoOOP.models.Citta;
 import it.ldaac.meteoOOP.models.DatoMeteo;
+import it.ldaac.meteoOOP.models.Ricerca;
 import it.ldaac.meteoOOP.models.Richiesta;
 import it.ldaac.meteoOOP.models.Risposta;
 import it.ldaac.meteoOOP.service.MeteoService;
@@ -54,6 +55,19 @@ public class MeteoOOPController {
 		}catch (IOException | org.json.simple.parser.ParseException e) {
 			return false;
 		}
+		return true;
+	}
+	
+	@RequestMapping(value = "/getDataBase", method = RequestMethod.GET)
+	public Vector<Ricerca> getDataBase()
+	{
+		return meteoservice.getDataBase();
+	}
+	
+	@RequestMapping(value = "/removeAll", method = RequestMethod.GET)
+	public boolean removeAll()
+	{
+		this.meteoservice.removeAll();
 		return true;
 	}
 }

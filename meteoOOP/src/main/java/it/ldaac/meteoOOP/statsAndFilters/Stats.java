@@ -64,4 +64,36 @@ public class Stats {
 			sommaScartiQuadMedi += Math.pow(velVentoMedia-d.getTemperaturaPercepita(), 2);
 		return (sommaScartiQuadMedi/dati.size());
 	}
+	
+	public Vector<Double> calcolaStats(Vector<DatoMeteo> dati, boolean temp, boolean tempPerc, boolean velVento)
+	{
+		Vector<Double> stats = new Vector<Double>();
+		
+		if (temp) {
+			stats.add(this.calcolaTempMedia(dati));
+			stats.add(this.calcolaVarianzaTemp(dati));
+		} else {
+			stats.add((double) 0);
+			stats.add((double) 0);
+		}
+		
+		
+		if (tempPerc) {
+			stats.add(this.calcolaTempPercMedia(dati));
+			stats.add(this.calcolaVarianzaTempPerc(dati));
+		} else {
+			stats.add((double) 0);
+			stats.add((double) 0);
+		}
+		
+		if (velVento) {
+			stats.add(this.calcolaVelVentoMedia(dati));
+			stats.add(this.calcolaVarianzaVelVento(dati));
+		} else {
+			stats.add((double) 0);
+			stats.add((double) 0);
+		}
+		
+		return stats;
+	}
 }

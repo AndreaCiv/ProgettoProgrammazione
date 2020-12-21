@@ -32,7 +32,14 @@ public class MeteoOOPController {
 	@RequestMapping(value = "/testcitta", method = RequestMethod.POST)
 	public Risposta test(@RequestBody JSONObject body) throws org.json.simple.parser.ParseException, BadRequestException
 	{
-		Richiesta richiesta = new Richiesta((String) body.get("nome"), (int) body.get("raggio"), Long.parseLong(body.get("durata_raccolta").toString()));
+		int cnt;
+		try {
+			cnt = Integer.parseInt(body.get("cnt").toString());
+		} catch (Exception e) {
+			cnt = 50;
+		}
+		
+		Richiesta richiesta = new Richiesta((String) body.get("nome"), (int) body.get("raggio"), cnt, Long.parseLong(body.get("durata_raccolta").toString()));
 		return meteoservice.avviaRicerca(richiesta);
 	}
 	

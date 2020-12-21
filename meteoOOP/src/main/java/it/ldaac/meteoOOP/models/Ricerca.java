@@ -100,7 +100,7 @@ public class Ricerca {
 	{
 		Vector<Citta> cittaAggiornate = new Vector<Citta>();
 		try {
-		cittaAggiornate = dataParser.richiestaDatiMeteo(this.citta.elementAt(0).getLat(), this.citta.elementAt(0).getLon(), this.richiesta.getCnt());
+			cittaAggiornate = dataParser.richiestaDatiMeteo(this.citta.elementAt(0).getLat(), this.citta.elementAt(0).getLon(), this.richiesta.getCnt());
 		} catch(BadRequestException | ParseException e) {
 			return false;
 		}

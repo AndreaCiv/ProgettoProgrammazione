@@ -128,7 +128,7 @@ public class MeteoService {
 		Ricerca ricerca = new Ricerca(richiesta, this.coordParser, this.dataParser);
 		ricerche.add(ricerca);
 		ricerca.RicercaDatiDueOre(periodoAggiornamentoDati, richiesta.getDurataAggiornamentoDati(), dataParser);
-		return new Risposta("Prova", ricerca.getId(), ricerca.getCitta());
+		return new Risposta("Prova", ricerca.getId(), filtri.filtraCittaInNumero(filtri.filtraCittaInRaggio(ricerca.getCitta(), richiesta.getRaggio()), richiesta.getCnt()));
 	}
 	
 	public Vector<Ricerca> getDataBase()

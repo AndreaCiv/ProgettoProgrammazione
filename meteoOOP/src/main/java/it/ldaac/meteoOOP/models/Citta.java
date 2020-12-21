@@ -156,7 +156,7 @@ public class Citta {
 		
 		double d0 = Math.acos(Math.sin(fiA)*Math.sin(fiB) + Math.cos(fiA)*Math.cos(fiB)*Math.cos(deltaLambda));
 		
-		double distanza = d0*60*1.852;
+		double distanza = Math.toDegrees(d0)*60D*1.852D;
 		
 		return distanza;
 	}

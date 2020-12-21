@@ -4,6 +4,9 @@
 
 # Introduzione
 
+Lo scopo di questo progetto è quello di offrire un servizio meteo all'utente con cui scelta una città, si visualizzino tutte le informazioni attuali relative al vento e temperatura percepita delle città circostanti a quella scelta.
+
+
 <img src="/Users/luca/Desktop/OOP.jpg">
 <img src="diagclassi.jpg">
 <img src="diagseq.jpg">

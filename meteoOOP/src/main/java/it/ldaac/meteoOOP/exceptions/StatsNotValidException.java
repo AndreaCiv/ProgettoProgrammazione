@@ -1,10 +1,10 @@
-/**
- * 
- */
 package it.ldaac.meteoOOP.exceptions;
 
 /**
- * @author andreacivitarese
+ * 
+ * Eccezione nel caso il tipo di statistiche inserite dall'utente non sia valido
+ * 
+ * @author andreacivitarese, lucadambrosio
  *
  */
 public class StatsNotValidException extends Exception {

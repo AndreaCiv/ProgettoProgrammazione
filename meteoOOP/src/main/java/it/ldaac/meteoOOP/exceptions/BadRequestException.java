@@ -1,13 +1,10 @@
-/**
- * 
- */
 package it.ldaac.meteoOOP.exceptions;
 
 /**
  * 
+ * Eccezione nel caso di errata richiesta all'API di OpenWeather
  * 
  * @author andreacivitarese, lucadambrosio
- *
  */
 public class BadRequestException extends Exception {
 

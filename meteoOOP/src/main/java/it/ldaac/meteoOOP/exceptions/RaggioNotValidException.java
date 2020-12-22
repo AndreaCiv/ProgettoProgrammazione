@@ -1,10 +1,10 @@
-/**
- * 
- */
 package it.ldaac.meteoOOP.exceptions;
 
 /**
- * @author andreacivitarese
+ * 
+ * Eccezione nel caso il raggio inserito dall'utente sia minore o uguale a zero
+ * 
+ * @author andreacivitarese, lucadambrosio
  *
  */
 public class RaggioNotValidException extends Exception {

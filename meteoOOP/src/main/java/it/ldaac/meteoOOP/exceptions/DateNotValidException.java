@@ -1,10 +1,10 @@
-/**
- * 
- */
 package it.ldaac.meteoOOP.exceptions;
 
 /**
- * @author andreacivitarese
+ * 
+ * Eccezione nel caso la data inserita dall'utente non sia nel formato esatto
+ * 
+ * @author andreacivitarese, lucadambrosio
  *
  */
 public class DateNotValidException extends Exception {

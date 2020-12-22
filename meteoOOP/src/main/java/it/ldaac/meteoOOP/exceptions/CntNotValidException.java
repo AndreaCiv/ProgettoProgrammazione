@@ -1,11 +1,10 @@
-/**
- * 
- */
 package it.ldaac.meteoOOP.exceptions;
 
 /**
- * @author andreacivitarese
- *
+ * 
+ * Eccezione nel caso il numero di città da cercare inserito dall'utente non sia valido
+ * 
+ * @author andreacivitarese, lucadambrosio
  */
 public class CntNotValidException extends Exception {
 

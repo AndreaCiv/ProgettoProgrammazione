@@ -20,16 +20,24 @@ import it.ldaac.meteoOOP.utilities.CoordParser;
 import it.ldaac.meteoOOP.utilities.DataParser;
 
 /**
- * @author andreacivitarese
- *
+ * @author andreacivitarese, lucadambrosio
+ * Implements JSONAble
+ * 
+ * Classe che rappresenta una ricerca di dati
  */
-public class Ricerca {
+public class Ricerca implements JSONAble {
 	
+	/**
+	 * id della ricerca che corrisponde all'id della città centrale della ricerca fornito da OpenWeather
+	 */
 	private long id;
+	
+	/**
+	 * Vettore delle città coinvolte nella ricerca
+	 */
 	private Vector<Citta> citta;
 	
 	/**
-	 * 
 	 * @param richiesta Richiesta tramite la quale viene generata la ricerca
 	 * @throws BadRequestException
 	 * @throws ParseException
@@ -46,6 +54,11 @@ public class Ricerca {
 		this.id = this.citta.elementAt(0).getId();
 	}
 	
+	/**
+	 * @param ricerca JSONObject contenente i seguenti campi
+	 * "id_ricerca"		id della ricerca
+	 * "dati"			JSONArray contenente le città coinvolte nella ricerca
+	 */
 	public Ricerca (JSONObject ricerca)
 	{
 		this.id = (long) ricerca.get("id_ricerca");
@@ -59,19 +72,22 @@ public class Ricerca {
 	}
 	
 	/**
-	 * @return ID della ricerca
+	 * @return id della ricerca
 	 */
 	public long getId() {
 		return id;
 	}
 
 	/**
-	 * @return Vettore di città che fanno parte della ricerca
+	 * @return Vettore di città che sono coinvolte nella ricerca
 	 */
 	public Vector<Citta> getCitta() {
 		return citta;
 	}
 	
+	/**
+	 * @return JSONObject contenente l'id della ricerca e il JSONArray contente le città coinvolte
+	 */
 	public JSONObject toJSONObject()
 	{
 		JSONObject ritorno = new JSONObject();
@@ -88,7 +104,15 @@ public class Ricerca {
 		return ritorno;
 	}
 	
-	public boolean aggiornaDatiMeteo(DataParser dataParser)
+	/**
+	 * 
+	 * @param dataParser DataParser dal quale ottenere i dati meteo
+	 * @return true Se l'aggiunta dei dati è andata a buon fine
+	 * @return fasle Se l'aggiunta dei dati non è andata a buon fine
+	 * 
+	 * Metodo per agiiungere dati meteo a tutte le città della ricerca ottenendoli dall'API di OpenWeather
+	 */
+	public boolean aggiungiDatiMeteo(DataParser dataParser)
 	{
 		Vector<Citta> cittaAggiornate = new Vector<Citta>();
 		try {
@@ -111,6 +135,15 @@ public class Ricerca {
 		return true;
 	}
 	
+	/**
+	 * 
+	 * @param periodoAggiornamentoDati periodo in millisecondi con il quale vengono aggiunti i dati alle città
+	 * @param durata durata in millisecondi della ricerca e aggiunta dei dati
+	 * @param dataParser DataParser dal quale ottenere i dati da aggiungere
+	 * 
+	 * Metodo che crea un timer al quale viene assegnata la task di aggiungere dati meteo, questa task
+	 * viene eseguita ogni periodo di aggiornamento, che di default è impostato ogni 2 ore, per la durata della ricerca
+	 */
 	public void AggiungiDatiDueOre(long periodoAggiornamentoDati,long durata, DataParser dataParser)
 	{
 		Timer timer = new Timer();

@@ -6,10 +6,10 @@ package it.ldaac.meteoOOP.models;
 import org.json.simple.JSONObject;
 
 /**
- * @author andreacivitarese
- * @description Classe dove vengono salvati i dati della richiesta fatta dall'utente
+ * @author andreacivitarese, lucadambrosio
+ * Classe dove vengono salvati i dati della richiesta fatta dall'utente
  */
-public class Richiesta {
+public class Richiesta implements JSONAble {
 	private String nomeCitta;
 	private int raggio;
 	private int cnt;
@@ -17,7 +17,7 @@ public class Richiesta {
 	
 	
 	/**
-	 * @constructor per Richiesta nel caso l'utente fornisse il numero di città da ricercare
+	 * Costruttore per Richiesta
 	 * 
 	 * @param nomeCitta Nome della città centro del cerchio di ricerca
 	 * @param raggio    Raggio di ricerca in km
@@ -32,19 +32,13 @@ public class Richiesta {
 	}
 	
 	/**
-	 * @constructor per Richiesta nel caso l'utente non fornisse il numero di città da ricercare
-	 * 
-	 * @param nomeCitta Nome della città centro del cerchio di ricerca
-	 * @param raggio    Raggio di ricerca in km
+	 * Costruttore per Richiesta
+	 * @param richiesta JSONObject contentente i seguenti campi
+	 * "nome_citta"				nome della città inserita dall'utente
+	 * "raggio"					raggio del cerchio di ricerca
+	 * "cnt"					numero di città da cercare all'interno del raggio di ricerca
+	 * "durata_raccolta_dati" 	durata della ricerca in millisecondi
 	 */
-	public Richiesta(String nomeCitta, int raggio, long durataRaccoltaDati)
-	{
-		this.nomeCitta = nomeCitta;
-		this.raggio = raggio;
-		this.cnt = 50;
-		this.durataRaccoltaDati = durataRaccoltaDati;
-	}
-	
 	public Richiesta(JSONObject richiesta)
 	{
 		this.nomeCitta = (String) richiesta.get("nome_citta");
@@ -101,19 +95,22 @@ public class Richiesta {
 	}
 	
 	/**
-	 * @return the durataRaccoltaDati
+	 * @return La durata della ricerca dei dati
 	 */
 	public long getDurataAggiornamentoDati() {
 		return durataRaccoltaDati;
 	}
 
 	/**
-	 * @param durataRaccoltaDati the durataAggiornamentoDati to set
+	 * @param durataRaccoltaDati Durata della ricerca da impostare
 	 */
 	public void setDurataAggiornamentoDati(long durataRaccoltaDati) {
 		this.durataRaccoltaDati = durataRaccoltaDati;
 	}
-
+	
+	/**
+	 * @return JSONObject contenente gli attributi della richiesta
+	 */
 	public JSONObject toJSONObject()
 	{
 		JSONObject ritorno = new JSONObject();

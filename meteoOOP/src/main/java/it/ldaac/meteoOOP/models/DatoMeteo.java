@@ -5,23 +5,39 @@ import java.util.Date;
 import org.json.simple.JSONObject;
 
 /**
- * @author andreacivitarese
+ * @author andreacivitarese, lucadambrosio
+ * Implements JSONAble
  *
- * Classe che racchiude il dato meteo riguardante temperatura percepita e velocità del vento
+ * Classe che racchiude il dato meteo riguardante temperatura, temperatura percepita e velocità del vento
  * in uno specifico momento ed assegnato ad una specifica città
  *  
  */
-public class DatoMeteo {
+public class DatoMeteo implements JSONAble {
 	
+	/**
+	 * temperatura in °C del datometeo
+	 */
 	private double temperatura;
+	
+	/**
+	 * temperatura percepita in °C del dato meteo
+	 */
 	private double temperaturaPercepita;
+	
+	/**
+	 * velocità del vento in km/h del dato meteo
+	 */
 	private double velocitaVento;
+	
+	/**
+	 * istante di rilevazione del dato meteo
+	 */
 	Date data;
 	
 	/**
-	 * @Constructor per DatoMeteo
+	 * Costruttore per DatoMeteo
 	 * 
-	 * @param temperaura Temperatura in °C
+	 * @param temperatura Temperatura in °C
 	 * @param tempPerc   Temperatura percepita in °C
 	 * @param velVento   Velocità del vento in km/h
 	 * @param dataUnix   Data in formato Unix
@@ -34,22 +50,31 @@ public class DatoMeteo {
 		this.data = new Date(dataUnix);
 	}
 	
+	/**
+	 * Costruttore per DatoMeteo
+	 * 
+	 * @param datoMeteo JSONObject da parsare per costruire il dato meteo
+	 * 
+	 * Il JSONObject deve avere i seguenti campi
+	 * "temperatura" 			temperatura in °C
+	 * "temperatura_percepita"  temperatura percepita in °C
+	 * "velocita_vento"			velocità del vento in km/h
+	 * "data"					data del rilevamento in formato Unix 
+	 * 
+	 */
 	public DatoMeteo(JSONObject datoMeteo)
 	{
-		String temperatura = datoMeteo.get("temperatura").toString();
-		this.temperatura = Double.parseDouble(temperatura);
+		this.temperatura = Double.parseDouble(datoMeteo.get("temperatura").toString());
 		
-		String temperaturaPercepita = datoMeteo.get("temperatura_percepita").toString();
-		this.temperaturaPercepita = Double.parseDouble(temperaturaPercepita);
+		this.temperaturaPercepita = Double.parseDouble(datoMeteo.get("temperatura_percepita").toString());
 		
-		String velocitaVento = datoMeteo.get("velocita_vento").toString();
-		this.velocitaVento = Double.parseDouble(velocitaVento);
+		this.velocitaVento = Double.parseDouble(datoMeteo.get("velocita_vento").toString());
 		
 		this.data = new Date((long)datoMeteo.get("data"));
 	}
 	
 	/**
-	 * @return Temperatura in °C
+	 * @return Temperatura del dato meteo in °C
 	 */
 	public double getTemperatura() {
 		return temperatura;
@@ -63,7 +88,7 @@ public class DatoMeteo {
 	}
 	
 	/**
-	 * @return La temperatura percepita in °C
+	 * @return La temperatura percepita del dato meteo in °C
 	 */
 	public double getTemperaturaPercepita() {
 		return temperaturaPercepita;
@@ -77,14 +102,14 @@ public class DatoMeteo {
 	}
 	
 	/**
-	 * @return La velocità del vento in km/h
+	 * @return La velocità del vento del dato meteo in km/h
 	 */
 	public double getVelocitaVento() {
 		return velocitaVento;
 	}
 	
 	/**
-	 * @param Velocità del vento da impostare in km/h
+	 * @param velocitaVento Velocità del vento da impostare in km/h
 	 */
 	public void setVelocitaVento(double velocitaVento) {
 		this.velocitaVento = velocitaVento;
@@ -98,12 +123,18 @@ public class DatoMeteo {
 	}
 	
 	/**
-	 * @param Data della rilevazione da impostare
+	 * @param data Data della rilevazione da impostare
 	 */
 	public void setData(Date data) {
 		this.data = data;
 	}
 	
+	/**
+	 * 
+	 * @param data Data con la quale confrontare la data del rilevamento
+	 * @return true Se la data del rilevamento è successiva a quella passata come argomento
+	 * @return false Se la data del rilevamento è precedente a quella passata come argomento
+	 */
 	public boolean confrontaData (Date data)
 	{
 		if (this.data.compareTo(data)>=0)
@@ -112,6 +143,9 @@ public class DatoMeteo {
 			return false;
 	}
 	
+	/**
+	 * @return JSONObject contente gli attributi del dato meteo
+	 */
 	public JSONObject toJSONObject()
 	{
 		JSONObject ritorno = new JSONObject();

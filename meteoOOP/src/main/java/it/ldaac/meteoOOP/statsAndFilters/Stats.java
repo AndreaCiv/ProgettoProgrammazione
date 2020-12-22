@@ -11,11 +11,16 @@ import it.ldaac.meteoOOP.models.Citta;
 import it.ldaac.meteoOOP.models.DatoMeteo;
 
 /**
- * @author andreacivitarese
- *
+ * @author andreacivitarese, lucadambrosio
+ * Classe che implementa funzioni per generare statistiche su città e dati meteo
  */
 public class Stats {
 	
+	/**
+	 * Calcola la temperatura media di un set di dati meteo
+	 * @param dati Dati meteo sui quali calcolare la statistica
+	 * @return Temperatura media dei dati
+	 */
 	public double calcolaTempMedia(Vector<DatoMeteo> dati)
 	{
 		double sommaTemp = 0;
@@ -24,6 +29,11 @@ public class Stats {
 		return (sommaTemp/dati.size());
 	}
 	
+	/**
+	 * Calcola la temperatura percepita media di un set di dati meteo
+	 * @param dati Dati meteo sui quali calcolare la statistica
+	 * @return Temperatura percepita media dei dati
+	 */
 	public double calcolaTempPercMedia(Vector<DatoMeteo> dati)
 	{
 		double sommaTempPerc = 0;
@@ -32,6 +42,11 @@ public class Stats {
 		return (sommaTempPerc/dati.size());
 	}
 	
+	/**
+	 * Calcola la velocità del vento media di un set di dati meteo
+	 * @param dati Dati meteo sui quali calcolare la statistica
+	 * @return Velocità del vento media dei dati
+	 */
 	public double calcolaVelVentoMedia(Vector<DatoMeteo> dati)
 	{
 		double sommaVelVento = 0;
@@ -40,6 +55,11 @@ public class Stats {
 		return (sommaVelVento/dati.size());
 	}
 	
+	/**
+	 * Calcola la varianza dalla temperatura media di un set di dati meteo
+	 * @param dati Dati meteo sui quali calcolare la statistica
+	 * @return Varianza delle temperature dei dati
+	 */
 	public double calcolaVarianzaTemp(Vector<DatoMeteo> dati)
 	{
 		double sommaScartiQuadMedi = 0;
@@ -49,6 +69,11 @@ public class Stats {
 		return (sommaScartiQuadMedi/dati.size());
 	}
 	
+	/**
+	 * Calcola la varianza dalla temperatura percepita media di un set di dati meteo
+	 * @param dati Dati meteo sui quali calcolare la statistica
+	 * @return Varianza delle temperature percepite dei dati
+	 */
 	public double calcolaVarianzaTempPerc(Vector<DatoMeteo> dati) 
 	{
 		double sommaScartiQuadMedi = 0;
@@ -58,6 +83,11 @@ public class Stats {
 		return (sommaScartiQuadMedi/dati.size());
 	}
 	
+	/**
+	 * Calcola la varianza dalla velocità del vento media di un set di dati meteo
+	 * @param dati Dati meteo sui quali calcolare la statistica
+	 * @return Varianza delle velocità del vento dei dati
+	 */
 	public double calcolaVarianzaVelVento(Vector<DatoMeteo> dati) 
 	{
 		double sommaScartiQuadMedi = 0;
@@ -66,23 +96,12 @@ public class Stats {
 			sommaScartiQuadMedi += Math.pow(velVentoMedia-d.getTemperaturaPercepita(), 2);
 		return (sommaScartiQuadMedi/dati.size());
 	}
-	
-	public Vector<Double> calcolaStats(Vector<DatoMeteo> dati)
-	{
-		Vector<Double> stats = new Vector<Double>();
-		
-		stats.add(this.calcolaTempMedia(dati));
-		stats.add(this.calcolaVarianzaTemp(dati));	
 
-		stats.add(this.calcolaTempPercMedia(dati));
-		stats.add(this.calcolaVarianzaTempPerc(dati));
-		
-		stats.add(this.calcolaVelVentoMedia(dati));
-		stats.add(this.calcolaVarianzaVelVento(dati));
-			
-		return stats;
-	}
-	
+	/**
+	 * Restituisce la città con la massima temperatura media
+	 * @param daAnalizzare Città da analizzare
+	 * @return Città con la massima temperatura media
+	 */
 	public Citta maxTempMedia(Vector<Citta> daAnalizzare)
 	{
 		Citta ritorno = daAnalizzare.elementAt(0);
@@ -92,6 +111,11 @@ public class Stats {
 		return ritorno;
 	}
 	
+	/**
+	 * Restituisce la città con la minima temperatura media
+	 * @param daAnalizzare Città da analizzare
+	 * @return Città con la minima temperatura media
+	 */
 	public Citta minTempMedia(Vector<Citta> daAnalizzare)
 	{
 		Citta ritorno = daAnalizzare.elementAt(0);
@@ -101,6 +125,11 @@ public class Stats {
 		return ritorno;
 	}
 	
+	/**
+	 * Restituisce la città con la massima temperatura percepita media
+	 * @param daAnalizzare Città da analizzare
+	 * @return Città con la massima temperatura percepita media
+	 */
 	public Citta maxTempPercMedia(Vector<Citta> daAnalizzare)
 	{
 		Citta ritorno = daAnalizzare.elementAt(0);
@@ -110,6 +139,11 @@ public class Stats {
 		return ritorno;
 	}
 	
+	/**
+	 * Restituisce la città con la minima temperatura percepita media
+	 * @param daAnalizzare Città da analizzare
+	 * @return Città con la minima temperatura percepita media
+	 */
 	public Citta minTempPercMedia(Vector<Citta> daAnalizzare)
 	{
 		Citta ritorno = daAnalizzare.elementAt(0);
@@ -119,6 +153,11 @@ public class Stats {
 		return ritorno;
 	}
 	
+	/**
+	 * Restituisce la città con la massima velocità del vento media
+	 * @param daAnalizzare Città da analizzare
+	 * @return Città con la massima velocità del vento media
+	 */
 	public Citta maxVelVentoMedia(Vector<Citta> daAnalizzare)
 	{
 		Citta ritorno = daAnalizzare.elementAt(0);
@@ -128,6 +167,11 @@ public class Stats {
 		return ritorno;
 	}
 	
+	/**
+	 * Restituisce la città con la minima velocità del vento media
+	 * @param daAnalizzare Città da analizzare
+	 * @return Città con la minima velocità del vento media
+	 */
 	public Citta minVelVentoMedia(Vector<Citta> daAnalizzare)
 	{
 		Citta ritorno = daAnalizzare.elementAt(0);
@@ -137,6 +181,11 @@ public class Stats {
 		return ritorno;
 	}
 	
+	/**
+	 * Restituisce la città con la massima varianza delle temperature
+	 * @param daAnalizzare Città da analizzare
+	 * @return Città con la massima varianza delle temperature
+	 */
 	public Citta maxVarTemp(Vector<Citta> daAnalizzare)
 	{
 		Citta ritorno = daAnalizzare.elementAt(0);
@@ -146,6 +195,11 @@ public class Stats {
 		return ritorno;
 	}
 	
+	/**
+	 * Restituisce la città con la massima varianza delle temperature percepite
+	 * @param daAnalizzare Città da analizzare
+	 * @return Città con la massima varianza delle temperature percepite
+	 */
 	public Citta maxVarTempPerc(Vector<Citta> daAnalizzare)
 	{
 		Citta ritorno = daAnalizzare.elementAt(0);
@@ -155,6 +209,11 @@ public class Stats {
 		return ritorno;
 	}
 	
+	/**
+	 * Restituisce la città con la massima varianza delle velocità del vento
+	 * @param daAnalizzare Città da analizzare
+	 * @return Città con la massima varianza delle velocità del vento
+	 */
 	public Citta maxVarVelVento(Vector<Citta> daAnalizzare)
 	{
 		Citta ritorno = daAnalizzare.elementAt(0);

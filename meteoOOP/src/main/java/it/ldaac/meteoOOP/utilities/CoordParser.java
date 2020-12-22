@@ -53,7 +53,7 @@ public class CoordParser extends Parser {
 	}
 	
 	/**
-	 * 
+	 * Metodo per generare l'URL per chiamare l'API di OpenWeather
 	 * @param nomeCitta Nome della città di cui cercare le coordinate
 	 * @return URL sotto forma di stringa per chiamare l'API di Openweather
 	 */

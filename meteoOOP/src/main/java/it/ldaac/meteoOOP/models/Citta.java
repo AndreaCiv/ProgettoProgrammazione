@@ -9,19 +9,40 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
- * @author andreacivitarese
- * @description Classe che definisce una città con la sua raccolta di dati meteo
+ * @author andreacivitarese, lucadambrosio
+ * Implements JSONAble
+ * Classe che definisce una città e i suoi dati principali, con la sua raccolta di dati meteo
  */
-public class Citta {
+public class Citta implements JSONAble {
 	
+	/**
+	 * Nome della città
+	 */
 	private String nomeCitta;
+	
+	/**
+	 * id della città
+	 * Le viene assegnato dalle API di Openweather
+	 */
 	private long id;
+	
+	/**
+	 * Latitudine della città in gradi sessagesimali
+	 */
 	private double lat;
+	
+	/**
+	 * Longitudine della città in gradi sessagesimali
+	 */
 	private double lon;
+	
+	/**
+	 * Vettore contenente tutti i dati meteo relativi a quella città
+	 */
 	private Vector<DatoMeteo> datiMeteo;
 	
 	/**
-	 * @Constructor per Citta
+	 * Costruttore per Citta
 	 * 
 	 * @param nomeCitta Nome della città
 	 * @param id        Codice identificativo per le API di Openwheather
@@ -37,17 +58,25 @@ public class Citta {
 		this.datiMeteo = new Vector<DatoMeteo>();
 	}
 	
+	/**
+	 * Costruttore per Citta
+	 * 
+	 * @param citta JSONObject contenente i seguenti campi
+	 * "nome_citta" 	nome della città
+	 * "id"				id della città
+	 * "lat"			latitudine della città in gradi sessagesimali
+	 * "lon"			longitudine della città in gradi sessagesimali
+	 * "dati_meteo" 	JSONArray contenente tutti i dati meteo della città
+	 */
 	public Citta(JSONObject citta)
 	{
 		this.nomeCitta = (String) citta.get("nome_citta");
 		
 		this.id = (long) citta.get("id");
 		
-		String lat = citta.get("lat").toString();
-		this.lat = Double.parseDouble(lat);
+		this.lat = Double.parseDouble(citta.get("lat").toString());
 		
-		String lon = citta.get("lon").toString();
-		this.lon = Double.parseDouble(lon);
+		this.lon = Double.parseDouble(citta.get("lon").toString());
 		
 		this.datiMeteo = new Vector<DatoMeteo>();
 		
@@ -58,6 +87,7 @@ public class Citta {
 		}
 		
 	}
+	
 	/**
 	 * @return Il nome della città
 	 */
@@ -87,35 +117,35 @@ public class Citta {
 	}
 
 	/**
-	 * @return La latitudine
+	 * @return Latitudine della città in gradi sessagesimali
 	 */
 	public double getLat() {
 		return lat;
 	}
 
 	/**
-	 * @param lat Latitudine
+	 * @param lat Latitudine della città in gradi sessagesimali
 	 */
 	public void setLat(double lat) {
 		this.lat = lat;
 	}
 
 	/**
-	 * @return Longitudine
+	 * @return Longitudine della città in gradi sessagesimali
 	 */
 	public double getLon() {
 		return lon;
 	}
 
 	/**
-	 * @param lon Longitudine
+	 * @param lon Longitudine della città in gradi sessagesimali
 	 */
 	public void setLon(double lon) {
 		this.lon = lon;
 	}
 	
 	/**
-	 * @return Vettore dei dati meteo della città
+	 * @return Vettore contenente i dati meteo della città
 	 */
 	public Vector<DatoMeteo> getDatiMeteo()
 	{
@@ -123,7 +153,7 @@ public class Citta {
 	}
 	
 	/**
-	 * @param datiMeteo the datiMeteo to set
+	 * @param datiMeteo Vettore di dati meteo da associare alla città
 	 */
 	public void setDatiMeteo(Vector<DatoMeteo> datiMeteo) {
 		this.datiMeteo = datiMeteo;
@@ -138,6 +168,9 @@ public class Citta {
 		this.datiMeteo.add(datoDaIns);
 	}
 	
+	/**
+	 * @return JSONObject contenente gli attributi della città e il JSONArray dei dati meteo a essa relativi
+	 */
 	public JSONObject toJSONObject()
 	{
 		JSONObject ritorno = new JSONObject();
@@ -154,7 +187,12 @@ public class Citta {
 		return ritorno;
 	}
 	
-	
+	/**
+	 * Metodo per calcolare la distanza tra questa città e quella passata per argomento approssimando
+	 * la terra ad una sfera
+	 * @param citta Città dalla quale si vuole calcolare la distanza
+	 * @return Distanza tra le due città in km
+	 */
 	public double calcolaDistanza(Citta citta)
 	{
 		double fiA = Math.toRadians(this.lat);

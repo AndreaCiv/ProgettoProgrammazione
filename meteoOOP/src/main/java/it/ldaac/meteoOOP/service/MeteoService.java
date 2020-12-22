@@ -34,20 +34,56 @@ import it.ldaac.meteoOOP.utilities.CoordParser;
 import it.ldaac.meteoOOP.utilities.DataParser;
 
 /**
- * @author andreacivitarese
- *
+ * @author andreacivitarese, lucadambrosio
+ * 
+ * Classe che rappresenta il servizio sul quale si basa l'applicativo
  */
 
 @Service
 public class MeteoService {
 	
+	/**
+	 * Vettore contenente le ricerche effettuate dagli utenti
+	 */
 	private Vector<Ricerca> ricerche;
+	
+	/**
+	 * DataParser dal quale ottenere i dati per le ricerche
+	 */
 	private DataParser dataParser;
+	
+	/**
+	 * CoordParser dal quale ottenere le coordinate delle città immesse dagli utenti
+	 */
 	private CoordParser coordParser;
+	
+	/**
+	 * Periodo di aggiornamento e aggiunta dei dati delle città
+	 */
 	private long periodoAggiornamentoDati = 7200000;
+	
+	/**
+	 * Tipo di unità che deve utilizzare l'API di OpenWeather nella risposta
+	 */
+	private String units;
+	
+	/**
+	 * Filtri per le città e i dati meteo
+	 */
 	private Filters filtri;
+	
+	/**
+	 * Statistiche per le città e i dati meteo
+	 */
 	private Stats statistiche;
 	
+	/**
+	 * Costruttore per MeteoService
+	 * Carica dal file config.JSON le configurazioni per l'applicazione, se questo non è disponibile
+	 * le imposta di defult
+	 * Carica dal file database.JSON il vettore di ricerche, se questo non è disponibile ne inizializza
+	 * uno nuovo
+	 */
 	public MeteoService()
 	{
 		try {
@@ -69,25 +105,34 @@ public class MeteoService {
 			JSONParser parser = new JSONParser();
 			JSONObject config = (JSONObject) parser.parse(inputLine);
 			
-			this.coordParser = new CoordParser((String) config.get("API_key"));
-			this.dataParser = new DataParser((String) config.get("API_key"));
 			this.periodoAggiornamentoDati = (long) config.get("periodo_aggiornamento");
+			this.units = (String) config.get("units");
+			this.coordParser = new CoordParser((String) config.get("API_key"));
+			this.dataParser = new DataParser((String) config.get("API_key"), this.units);
+			
 		}
 		catch(IOException | ParseException e) {
 			this.periodoAggiornamentoDati = 7200000;
 			this.coordParser = new CoordParser("1517261fd57d49d69ffd42658f042ff9");
-			this.dataParser = new DataParser("1517261fd57d49d69ffd42658f042ff9");
+			this.dataParser = new DataParser("1517261fd57d49d69ffd42658f042ff9", "metric");
 		}
 		
 		this.filtri = new Filters();
 		this.statistiche = new Stats();
 	}
 	
+	/**
+	 * @param ricerca Ricerca da aggiungere al servizio
+	 */
 	public void aggiungiRicerca (Ricerca ricerca)
 	{
 		this.ricerche.add(ricerca);
 	}
 	
+	/**
+	 * Salva su un file JSON il vettore delle ricerche con tutti i loro dati e può essere ricaricato ad un nuovo avvio
+	 * @throws IOException
+	 */
 	public void salvaSuFile() throws IOException
 	{
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("database.JSON")));
@@ -108,6 +153,11 @@ public class MeteoService {
 		
 	}
 	
+	/**
+	 * Metodo per caricare il vettore delle ricerche da un file JSON
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public void caricaDaFile() throws IOException, ParseException
 	{
 		Scanner in = new Scanner(new BufferedReader(new FileReader("database.JSON")));
@@ -128,6 +178,16 @@ public class MeteoService {
 		}
 		
 	}
+	
+	/**
+	 * Metodo per avviare una ricerca tramite una richiesta fornita dall'utente
+	 * @param richiesta Richiesta tramite la quale avviare la ricerca
+	 * @return JSONObject contenete i dati instantanei delle città coinvolte nella ricerca
+	 * @throws BadRequestException
+	 * @throws ParseException
+	 * @throws MalformedURLException
+	 * @throws IOException
+	 */
 	public JSONObject avviaRicerca(Richiesta richiesta) throws BadRequestException, ParseException, MalformedURLException, IOException
 	{
 		Ricerca ricerca = new Ricerca(richiesta, this.coordParser, this.dataParser);
@@ -149,16 +209,27 @@ public class MeteoService {
 		return risposta;
 	}
 	
+	/**
+	 * @return Vettore contenente le ricerche fatte dagli utenti
+	 */
 	public Vector<Ricerca> getDataBase()
 	{
 		return this.ricerche;
 	}
 	
+	/**
+	 * Metodo per cancellare tutte le ricerche fatte dagli utenti
+	 */
 	public void removeAll()
 	{
 		this.ricerche.removeAllElements();
 	}
 
+	/**
+	 * @param idRicerca id della ricerca da ottenere
+	 * @return Ricerca identificata da quell'id
+	 * @return null se non esiste alcuna ricerca contenente quell'id
+	 */
 	public Ricerca ottieniRicerca (long idRicerca)
 	{
 		for(Ricerca r : this.ricerche)
@@ -168,6 +239,19 @@ public class MeteoService {
 		return null;
 	}
 	
+	/**
+	 * Metodo per generare le statistiche in base ad una richiesta fatta dall'utente
+	 * @param idRicerca id della ricerca sulla quale generare le statistiche
+	 * @param tipoStats tipo di statistiche da generare
+	 * @param data1 data dalla quale si vogliono prendere in considerazione in dati [dd/mm/aa]
+	 * @param data2 data fino alla quale si vogliono prendere in considerazione in dati [dd/mm/aa]
+	 * @param raggio raggio in km entro il quale prendere in considerazione le città per generare le statistiche
+	 * @param cnt numero di città entro il raggio sul quale generare le statistiche
+	 * @return JSONObject contenente le statistiche richieste
+	 * @throws StatsNotValidException
+	 * @throws IdNotFoundException
+	 * @throws DateNotValidException
+	 */
 	@SuppressWarnings("unchecked")
 	public JSONObject generaStats(long idRicerca, String tipoStats, String data1, String data2, int raggio, int cnt) throws StatsNotValidException, IdNotFoundException, DateNotValidException 
 	{
@@ -177,7 +261,7 @@ public class MeteoService {
 				cittaFiltrate = filtri.filtraCittaInRaggio(this.ottieniRicerca(idRicerca).getCitta(), raggio);
 			else
 				cittaFiltrate = filtri.filtraCittaInNumero(filtri.filtraCittaInRaggio(this.ottieniRicerca(idRicerca).getCitta(), raggio), cnt);
-		} catch (Exception e) {
+		} catch (NullPointerException e) {
 			throw new IdNotFoundException();
 		}
 		
@@ -281,7 +365,4 @@ public class MeteoService {
 		
 		return stats;
 	}
-
-	
-	
 }

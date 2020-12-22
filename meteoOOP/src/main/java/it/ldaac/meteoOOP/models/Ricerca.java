@@ -1,13 +1,8 @@
-/**
- * 
- */
 package it.ldaac.meteoOOP.models;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.Iterator;
 import java.util.Timer;
-import java.util.TimerTask;
 import java.util.Vector;
 
 import org.json.simple.JSONArray;

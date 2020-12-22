@@ -1,6 +1,3 @@
-/**
- * 
- */
 package it.ldaac.meteoOOP.statsAndFilters;
 
 import java.util.Vector;

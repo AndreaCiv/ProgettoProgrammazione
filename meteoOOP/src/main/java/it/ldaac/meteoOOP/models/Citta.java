@@ -1,6 +1,3 @@
-/**
- * 
- */
 package it.ldaac.meteoOOP.models;
 
 import java.util.Vector;

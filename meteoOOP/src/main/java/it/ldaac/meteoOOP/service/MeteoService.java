@@ -1,6 +1,3 @@
-/**
- * 
- */
 package it.ldaac.meteoOOP.service;
 
 import java.io.BufferedReader;

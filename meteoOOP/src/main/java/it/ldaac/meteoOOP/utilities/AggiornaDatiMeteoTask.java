@@ -8,9 +8,11 @@ import java.util.TimerTask;
 import it.ldaac.meteoOOP.models.Ricerca;
 
 /**
- * @author andreacivitarese, lucadambrosio
+ * 
  * Extends TimerTask
  * Task personazlizzata da assegnare ad un timer per aggiornare e aggiungere dati meteo alle ricerche
+ * 
+ * @author andreacivitarese, lucadambrosio
  */
 public class AggiornaDatiMeteoTask extends TimerTask {
 	
@@ -31,6 +33,7 @@ public class AggiornaDatiMeteoTask extends TimerTask {
 	
 	/**
 	 * Costruttore per AggiornaDatiMeteoTask
+	 * 
 	 * @param ricerca Ricerca alla quale vogliamo aggiungere dati
 	 * @param durata Durata della ricerca e aggiunta dei nuvi dati in millisecondi
 	 * @param dataParser DataParser dal quale otteniamo i dati da aggiungere alla ricerca

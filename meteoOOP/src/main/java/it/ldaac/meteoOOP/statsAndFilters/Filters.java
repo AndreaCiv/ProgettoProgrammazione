@@ -7,13 +7,16 @@ import it.ldaac.meteoOOP.models.Citta;
 import it.ldaac.meteoOOP.models.DatoMeteo;
 
 /**
- * @author andreacivitarese, lucadambrosio
+ * 
  * Classe che implementa funzioni per filtrare città e dati meteo
+ * 
+ * @author andreacivitarese, lucadambrosio
  */
 public class Filters {
 	
 	/**
 	 * Filtra i dati meteo a partire da una data
+	 * 
 	 * @param daFiltrare Vettore contenente i dati meteo da filtrare
 	 * @param inizio Data dalla quale prendere in considerazione i dati meteo
 	 * @return Vettore contenente i dati meteo filtrati
@@ -31,6 +34,7 @@ public class Filters {
 	
 	/**
 	 * Filtra i dati meteo e restituisce quelli compresi tra le due date
+	 * 
 	 * @param daFiltrare Vettore contenente i dati meteo da filtrare
 	 * @param inizio Data dalla quale prendere in considerazione i dati meteo
 	 * @param fine Data fino alla quale prendere in considerazione i dati meteo
@@ -48,6 +52,7 @@ public class Filters {
 	
 	/**
 	 * Filtra le città in base alla loro distanza da quella centrale
+	 * 
 	 * @param daFiltrare Vettore contenente le città da filtrare
 	 * @param raggio Raggio entro il quale devono trovarsi le città
 	 * @return Vettore contenente le città filtrate
@@ -63,6 +68,7 @@ public class Filters {
 	
 	/**
 	 * Filtra le città in base al loro numero
+	 * 
 	 * @param daFiltrare Vettore contenente le città da filtrare
 	 * @param numero Numero di città che si vuole prendere
 	 * @return Vettore contenente le città filtrate

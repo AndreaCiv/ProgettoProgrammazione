@@ -6,8 +6,10 @@ package it.ldaac.meteoOOP.models;
 import org.json.simple.JSONObject;
 
 /**
- * @author andreacivitarese, lucadambrosio
+ * 
  * Classe dove vengono salvati i dati della richiesta fatta dall'utente
+ * 
+ * @author andreacivitarese, lucadambrosio
  */
 public class Richiesta implements JSONAble {
 	private String nomeCitta;
@@ -33,6 +35,7 @@ public class Richiesta implements JSONAble {
 	
 	/**
 	 * Costruttore per Richiesta
+	 * 
 	 * @param richiesta JSONObject contentente i seguenti campi
 	 * "nome_citta"				nome della città inserita dall'utente
 	 * "raggio"					raggio del cerchio di ricerca
@@ -109,6 +112,8 @@ public class Richiesta implements JSONAble {
 	}
 	
 	/**
+	 * Metodo per ottenere un JSONObject con i dati della richiesta
+	 * 
 	 * @return JSONObject contenente gli attributi della richiesta
 	 */
 	public JSONObject toJSONObject()

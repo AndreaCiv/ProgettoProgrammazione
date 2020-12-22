@@ -20,10 +20,11 @@ import it.ldaac.meteoOOP.models.Citta;
 import it.ldaac.meteoOOP.models.DatoMeteo;
 
 /**
- * @author andreacivitarese
- *
- * permette di richiamare l'API di Openwheather per ottenere i dati meteo riguardanti le
+ * 
+ * Permette di richiamare l'API di Openwheather per ottenere i dati meteo riguardanti le
  * città all'interno di un cerchio
+ * 
+ * @author andreacivitarese, lucadambrosio
  */
 public class DataParser extends Parser {
 
@@ -31,6 +32,7 @@ public class DataParser extends Parser {
 	
 	/**
 	 * Costruttore per DataParser
+	 * 
 	 * @param apiKey API Key da utilizzare per le chiamate all'API di OpenWeather
 	 * @param units Tipo di unità che deve utilizzare l'API di OpenWeather nella risposta
 	 */
@@ -41,6 +43,7 @@ public class DataParser extends Parser {
 	
 	/**
 	 * Metodo che restituisce un vettore di città ognuna con il proprio dato meteo istantaneo
+	 * 
 	 * @param lat Latitudine del punto centrale della ricerca
 	 * @param lon Longitudine del punto centrale della ricerca
 	 * @param cnt Numero di città da ricercare

@@ -4,12 +4,17 @@
 package it.ldaac.meteoOOP.utilities;
 
 /**
- * @author andreacivitarese, lucadambrosio
+ * 
  * Superclasse dalla quale erediteranno i parser per ottenere i dati dalle API
  * di Openweather
+ * 
+ * @author andreacivitarese, lucadambrosio
  */
 public class Parser {
 	
+	/**
+	 * Stringa contenente la key per l'API di OpenWeather
+	 */
 	private String apiKey;
 	
 	/**

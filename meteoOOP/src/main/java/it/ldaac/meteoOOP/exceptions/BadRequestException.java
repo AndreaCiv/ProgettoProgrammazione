@@ -4,7 +4,9 @@
 package it.ldaac.meteoOOP.exceptions;
 
 /**
- * @author andreacivitarese
+ * 
+ * 
+ * @author andreacivitarese, lucadambrosio
  *
  */
 public class BadRequestException extends Exception {

@@ -35,9 +35,10 @@ import it.ldaac.meteoOOP.utilities.CoordParser;
 import it.ldaac.meteoOOP.utilities.DataParser;
 
 /**
- * @author andreacivitarese, lucadambrosio
  * 
  * Classe che rappresenta il servizio sul quale si basa l'applicativo
+ * 
+ * @author andreacivitarese, lucadambrosio
  */
 
 @Service
@@ -123,6 +124,8 @@ public class MeteoService {
 	}
 	
 	/**
+	 * Aggiunge una ricerca al database
+	 * 
 	 * @param ricerca Ricerca da aggiungere al servizio
 	 */
 	public void aggiungiRicerca (Ricerca ricerca)
@@ -131,7 +134,8 @@ public class MeteoService {
 	}
 	
 	/**
-	 * Salva su un file JSON il vettore delle ricerche con tutti i loro dati e può essere ricaricato ad un nuovo avvio
+	 * Salva su un file JSON il vettore delle ricerche con tutti i loro dati che può essere ricaricato ad un nuovo avvio
+	 * 
 	 * @throws IOException
 	 */
 	public void salvaSuFile() throws IOException
@@ -156,6 +160,7 @@ public class MeteoService {
 	
 	/**
 	 * Metodo per caricare il vettore delle ricerche da un file JSON
+	 * 
 	 * @throws IOException
 	 * @throws ParseException
 	 */
@@ -182,6 +187,7 @@ public class MeteoService {
 	
 	/**
 	 * Metodo per avviare una ricerca tramite una richiesta fornita dall'utente
+	 * 
 	 * @param richiesta Richiesta tramite la quale avviare la ricerca
 	 * @return JSONObject contenete i dati instantanei delle città coinvolte nella ricerca
 	 * @throws BadRequestException
@@ -211,6 +217,8 @@ public class MeteoService {
 	}
 	
 	/**
+	 * Metodo per ottenere il vettore delle ricerche effettuate
+	 * 
 	 * @return Vettore contenente le ricerche fatte dagli utenti
 	 */
 	public Vector<Ricerca> getDataBase()
@@ -227,6 +235,8 @@ public class MeteoService {
 	}
 
 	/**
+	 * Metodo per ottenera una specifica ricerca tramite il suo id
+	 * 
 	 * @param idRicerca id della ricerca da ottenere
 	 * @return Ricerca identificata da quell'id
 	 * @return null se non esiste alcuna ricerca contenente quell'id
@@ -242,6 +252,7 @@ public class MeteoService {
 	
 	/**
 	 * Metodo per generare le statistiche in base ad una richiesta fatta dall'utente
+	 * 
 	 * @param idRicerca id della ricerca sulla quale generare le statistiche
 	 * @param tipoStats tipo di statistiche da generare
 	 * @param data1 data dalla quale si vogliono prendere in considerazione in dati [dd/mm/aa]

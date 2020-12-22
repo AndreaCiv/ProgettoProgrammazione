@@ -15,9 +15,11 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 /**
- * @author andreacivitarese
+ * 
  * Parser per otenere le coordinate della città, centro del cerchio di ricerca, inserita
  * dall'utente
+ * 
+ * @author andreacivitarese, lucadambrosio
  */
 public class CoordParser extends Parser {
 
@@ -26,6 +28,8 @@ public class CoordParser extends Parser {
 	}
 	
 	/**
+	 * 
+	 * Metodo per ottenere le coordinate di una città partendo dal suo nome tramite l'API di OpenWeather
 	 * 
 	 * @param nomeCitta Nome della città della quale vogliamo sapere le coordinate
 	 * @return Le coordinate della città cercata in un vettore di double, nel quale, alla posizione 0 c'è 
@@ -54,6 +58,7 @@ public class CoordParser extends Parser {
 	
 	/**
 	 * Metodo per generare l'URL per chiamare l'API di OpenWeather
+	 * 
 	 * @param nomeCitta Nome della città di cui cercare le coordinate
 	 * @return URL sotto forma di stringa per chiamare l'API di Openweather
 	 */

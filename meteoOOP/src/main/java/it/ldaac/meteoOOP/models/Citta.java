@@ -9,9 +9,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
- * @author andreacivitarese, lucadambrosio
+ * 
  * Implements JSONAble
  * Classe che definisce una città e i suoi dati principali, con la sua raccolta di dati meteo
+ * 
+ * @author andreacivitarese, lucadambrosio
  */
 public class Citta implements JSONAble {
 	
@@ -161,6 +163,7 @@ public class Citta implements JSONAble {
 	
 	/**
 	 * Metodo per aggiungere un dato meteo al vettore dei dati della città
+	 * 
 	 * @param datoDaIns Dato meteo da inserire nella città
 	 */
 	public void aggiungiDatoMeteo(DatoMeteo datoDaIns)
@@ -169,6 +172,8 @@ public class Citta implements JSONAble {
 	}
 	
 	/**
+	 * Metodo per ottenere un JSONObject contenente tutti i dati riguardanti la città
+	 * 
 	 * @return JSONObject contenente gli attributi della città e il JSONArray dei dati meteo a essa relativi
 	 */
 	public JSONObject toJSONObject()
@@ -190,6 +195,7 @@ public class Citta implements JSONAble {
 	/**
 	 * Metodo per calcolare la distanza tra questa città e quella passata per argomento approssimando
 	 * la terra ad una sfera
+	 * 
 	 * @param citta Città dalla quale si vuole calcolare la distanza
 	 * @return Distanza tra le due città in km
 	 */

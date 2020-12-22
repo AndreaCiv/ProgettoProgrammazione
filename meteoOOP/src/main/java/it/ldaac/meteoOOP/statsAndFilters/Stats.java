@@ -11,13 +11,16 @@ import it.ldaac.meteoOOP.models.Citta;
 import it.ldaac.meteoOOP.models.DatoMeteo;
 
 /**
- * @author andreacivitarese, lucadambrosio
+ * 
  * Classe che implementa funzioni per generare statistiche su città e dati meteo
+
+ * @author andreacivitarese, lucadambrosio
  */
 public class Stats {
 	
 	/**
 	 * Calcola la temperatura media di un set di dati meteo
+	 * 
 	 * @param dati Dati meteo sui quali calcolare la statistica
 	 * @return Temperatura media dei dati
 	 */
@@ -31,6 +34,7 @@ public class Stats {
 	
 	/**
 	 * Calcola la temperatura percepita media di un set di dati meteo
+	 * 
 	 * @param dati Dati meteo sui quali calcolare la statistica
 	 * @return Temperatura percepita media dei dati
 	 */
@@ -44,6 +48,7 @@ public class Stats {
 	
 	/**
 	 * Calcola la velocità del vento media di un set di dati meteo
+	 * 
 	 * @param dati Dati meteo sui quali calcolare la statistica
 	 * @return Velocità del vento media dei dati
 	 */
@@ -57,6 +62,7 @@ public class Stats {
 	
 	/**
 	 * Calcola la varianza dalla temperatura media di un set di dati meteo
+	 * 
 	 * @param dati Dati meteo sui quali calcolare la statistica
 	 * @return Varianza delle temperature dei dati
 	 */
@@ -71,6 +77,7 @@ public class Stats {
 	
 	/**
 	 * Calcola la varianza dalla temperatura percepita media di un set di dati meteo
+	 * 
 	 * @param dati Dati meteo sui quali calcolare la statistica
 	 * @return Varianza delle temperature percepite dei dati
 	 */
@@ -85,6 +92,7 @@ public class Stats {
 	
 	/**
 	 * Calcola la varianza dalla velocità del vento media di un set di dati meteo
+	 * 
 	 * @param dati Dati meteo sui quali calcolare la statistica
 	 * @return Varianza delle velocità del vento dei dati
 	 */
@@ -99,6 +107,7 @@ public class Stats {
 
 	/**
 	 * Restituisce la città con la massima temperatura media
+	 * 
 	 * @param daAnalizzare Città da analizzare
 	 * @return Città con la massima temperatura media
 	 */
@@ -113,6 +122,7 @@ public class Stats {
 	
 	/**
 	 * Restituisce la città con la minima temperatura media
+	 * 
 	 * @param daAnalizzare Città da analizzare
 	 * @return Città con la minima temperatura media
 	 */
@@ -127,6 +137,7 @@ public class Stats {
 	
 	/**
 	 * Restituisce la città con la massima temperatura percepita media
+	 * 
 	 * @param daAnalizzare Città da analizzare
 	 * @return Città con la massima temperatura percepita media
 	 */
@@ -141,6 +152,7 @@ public class Stats {
 	
 	/**
 	 * Restituisce la città con la minima temperatura percepita media
+	 * 
 	 * @param daAnalizzare Città da analizzare
 	 * @return Città con la minima temperatura percepita media
 	 */
@@ -155,6 +167,7 @@ public class Stats {
 	
 	/**
 	 * Restituisce la città con la massima velocità del vento media
+	 * 
 	 * @param daAnalizzare Città da analizzare
 	 * @return Città con la massima velocità del vento media
 	 */
@@ -169,6 +182,7 @@ public class Stats {
 	
 	/**
 	 * Restituisce la città con la minima velocità del vento media
+	 * 
 	 * @param daAnalizzare Città da analizzare
 	 * @return Città con la minima velocità del vento media
 	 */
@@ -183,6 +197,7 @@ public class Stats {
 	
 	/**
 	 * Restituisce la città con la massima varianza delle temperature
+	 * 
 	 * @param daAnalizzare Città da analizzare
 	 * @return Città con la massima varianza delle temperature
 	 */
@@ -197,6 +212,7 @@ public class Stats {
 	
 	/**
 	 * Restituisce la città con la massima varianza delle temperature percepite
+	 * 
 	 * @param daAnalizzare Città da analizzare
 	 * @return Città con la massima varianza delle temperature percepite
 	 */
@@ -211,6 +227,7 @@ public class Stats {
 	
 	/**
 	 * Restituisce la città con la massima varianza delle velocità del vento
+	 * 
 	 * @param daAnalizzare Città da analizzare
 	 * @return Città con la massima varianza delle velocità del vento
 	 */

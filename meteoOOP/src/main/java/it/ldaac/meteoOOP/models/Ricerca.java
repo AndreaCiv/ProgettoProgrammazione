@@ -20,10 +20,11 @@ import it.ldaac.meteoOOP.utilities.CoordParser;
 import it.ldaac.meteoOOP.utilities.DataParser;
 
 /**
- * @author andreacivitarese, lucadambrosio
- * Implements JSONAble
  * 
+ * Implements JSONAble
  * Classe che rappresenta una ricerca di dati
+ * 
+ * @author andreacivitarese, lucadambrosio
  */
 public class Ricerca implements JSONAble {
 	
@@ -38,6 +39,9 @@ public class Ricerca implements JSONAble {
 	private Vector<Citta> citta;
 	
 	/**
+	 * 
+	 * Costruttore per Ricerca
+	 * 
 	 * @param richiesta Richiesta tramite la quale viene generata la ricerca
 	 * @throws BadRequestException
 	 * @throws ParseException
@@ -55,6 +59,9 @@ public class Ricerca implements JSONAble {
 	}
 	
 	/**
+	 * 
+	 * Costruttore per Ricerca
+	 * 
 	 * @param ricerca JSONObject contenente i seguenti campi
 	 * "id_ricerca"		id della ricerca
 	 * "dati"			JSONArray contenente le città coinvolte nella ricerca
@@ -86,6 +93,9 @@ public class Ricerca implements JSONAble {
 	}
 	
 	/**
+	 * 
+	 * Metodo per ottenere un JSONObject contenente tutti i dati della ricerca
+	 * 
 	 * @return JSONObject contenente l'id della ricerca e il JSONArray contente le città coinvolte
 	 */
 	public JSONObject toJSONObject()
@@ -106,11 +116,11 @@ public class Ricerca implements JSONAble {
 	
 	/**
 	 * 
+	 * Metodo per aggiungere dati meteo a tutte le città della ricerca ottenendoli dall'API di OpenWeather
+	 * 
 	 * @param dataParser DataParser dal quale ottenere i dati meteo
 	 * @return true Se l'aggiunta dei dati è andata a buon fine
 	 * @return fasle Se l'aggiunta dei dati non è andata a buon fine
-	 * 
-	 * Metodo per agiiungere dati meteo a tutte le città della ricerca ottenendoli dall'API di OpenWeather
 	 */
 	public boolean aggiungiDatiMeteo(DataParser dataParser)
 	{
@@ -137,12 +147,12 @@ public class Ricerca implements JSONAble {
 	
 	/**
 	 * 
+	 * Metodo che crea un timer al quale viene assegnata la task di aggiungere dati meteo, questa task
+	 * viene eseguita ogni periodo di aggiornamento, che di default è impostato ogni 2 ore, per la durata della ricerca
+	 * 
 	 * @param periodoAggiornamentoDati periodo in millisecondi con il quale vengono aggiunti i dati alle città
 	 * @param durata durata in millisecondi della ricerca e aggiunta dei dati
 	 * @param dataParser DataParser dal quale ottenere i dati da aggiungere
-	 * 
-	 * Metodo che crea un timer al quale viene assegnata la task di aggiungere dati meteo, questa task
-	 * viene eseguita ogni periodo di aggiornamento, che di default è impostato ogni 2 ore, per la durata della ricerca
 	 */
 	public void AggiungiDatiDueOre(long periodoAggiornamentoDati,long durata, DataParser dataParser)
 	{

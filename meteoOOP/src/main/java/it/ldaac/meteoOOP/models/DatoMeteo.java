@@ -5,12 +5,12 @@ import java.util.Date;
 import org.json.simple.JSONObject;
 
 /**
- * @author andreacivitarese, lucadambrosio
+ * 
  * Implements JSONAble
- *
  * Classe che racchiude il dato meteo riguardante temperatura, temperatura percepita e velocità del vento
  * in uno specifico momento ed assegnato ad una specifica città
- *  
+ * 
+ * @author andreacivitarese, lucadambrosio
  */
 public class DatoMeteo implements JSONAble {
 	
@@ -131,6 +131,8 @@ public class DatoMeteo implements JSONAble {
 	
 	/**
 	 * 
+	 * Metodo per confrontare una data con quella del rilavamento
+	 * 
 	 * @param data Data con la quale confrontare la data del rilevamento
 	 * @return true Se la data del rilevamento è successiva a quella passata come argomento
 	 * @return false Se la data del rilevamento è precedente a quella passata come argomento
@@ -144,6 +146,9 @@ public class DatoMeteo implements JSONAble {
 	}
 	
 	/**
+	 * 
+	 * Metodo per ottenere un JSONObject con tutti i dati del rilevamento
+	 * 
 	 * @return JSONObject contente gli attributi del dato meteo
 	 */
 	public JSONObject toJSONObject()

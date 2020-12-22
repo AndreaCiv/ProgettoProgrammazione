@@ -62,11 +62,6 @@ public class MeteoService {
 	private long periodoAggiornamentoDati = 7200000;
 	
 	/**
-	 * Tipo di unità che deve utilizzare l'API di OpenWeather nella risposta
-	 */
-	private String units;
-	
-	/**
 	 * Filtri per le città e i dati meteo
 	 */
 	private Filters filtri;
@@ -105,9 +100,8 @@ public class MeteoService {
 			JSONObject config = (JSONObject) parser.parse(inputLine);
 			
 			this.periodoAggiornamentoDati = (long) config.get("periodo_aggiornamento");
-			this.units = (String) config.get("units");
 			this.coordParser = new CoordParser((String) config.get("API_key"));
-			this.dataParser = new DataParser((String) config.get("API_key"), this.units);
+			this.dataParser = new DataParser((String) config.get("API_key"), (String) config.get("units"));
 			
 		}
 		catch(IOException | ParseException e) {

@@ -149,7 +149,7 @@ public class Citta implements JSONAble {
 	 */
 	public Vector<DatoMeteo> getDatiMeteo()
 	{
-		return this.datiMeteo;
+		return (Vector<DatoMeteo>)this.datiMeteo.clone();
 	}
 	
 	/**

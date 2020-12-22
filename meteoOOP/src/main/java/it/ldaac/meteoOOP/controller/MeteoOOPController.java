@@ -57,7 +57,7 @@ public class MeteoOOPController {
 			durataRaccolta = 172800000L;
 		}
 		
-		Richiesta richiesta = new Richiesta(nomeCitta, raggio, cnt, durataRaccolta);
+		Richiesta richiesta = new Richiesta(nomeCitta, raggio, cnt, durataRaccolta*3600L*1000L);
 		return meteoservice.avviaRicerca(richiesta);
 	}
 	

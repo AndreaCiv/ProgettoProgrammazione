@@ -6,13 +6,13 @@ import org.json.simple.JSONObject;
 
 /**
  * 
- * Implements JSONAble
+ * Implements JSONAble, Cloneable
  * Classe che racchiude il dato meteo riguardante temperatura, temperatura percepita e velocità del vento
  * in uno specifico momento ed assegnato ad una specifica città
  * 
  * @author andreacivitarese, lucadambrosio
  */
-public class DatoMeteo implements JSONAble {
+public class DatoMeteo implements JSONAble, Cloneable {
 	
 	/**
 	 * temperatura in °C del datometeo
@@ -159,5 +159,14 @@ public class DatoMeteo implements JSONAble {
 		ritorno.put("velocita_vento", this.velocitaVento);
 		ritorno.put("data", this.data.getTime());
 		return ritorno;
+	}
+	
+	/**
+	 * Crea una copia del dato meteo
+	 * @return una copia del dato meteo
+	 */
+	public DatoMeteo clone()
+	{
+		return new DatoMeteo(this.toJSONObject());
 	}
 }

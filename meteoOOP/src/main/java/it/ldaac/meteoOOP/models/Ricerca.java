@@ -21,12 +21,12 @@ import it.ldaac.meteoOOP.utilities.DataParser;
 
 /**
  * 
- * Implements JSONAble
+ * Implements JSONAble, Cloneable
  * Classe che rappresenta una ricerca di dati
  * 
  * @author andreacivitarese, lucadambrosio
  */
-public class Ricerca implements JSONAble {
+public class Ricerca implements JSONAble, Cloneable {
 	
 	/**
 	 * id della ricerca che corrisponde all'id della città centrale della ricerca fornito da OpenWeather
@@ -89,7 +89,7 @@ public class Ricerca implements JSONAble {
 	 * @return Vettore di città che sono coinvolte nella ricerca
 	 */
 	public Vector<Citta> getCitta() {
-		return citta;
+		return this.citta;
 	}
 	
 	/**
@@ -159,5 +159,14 @@ public class Ricerca implements JSONAble {
 		Timer timer = new Timer();
 		AggiornaDatiMeteoTask task = new AggiornaDatiMeteoTask(this, durata, dataParser);
 		timer.scheduleAtFixedRate(task, periodoAggiornamentoDati, periodoAggiornamentoDati);
+	}
+	
+	/**
+	 * Crea un clone della ricerca
+	 * @return Clone della ricerca
+	 */
+	public Ricerca clone()
+	{
+		return new Ricerca(this.toJSONObject());
 	}
 }

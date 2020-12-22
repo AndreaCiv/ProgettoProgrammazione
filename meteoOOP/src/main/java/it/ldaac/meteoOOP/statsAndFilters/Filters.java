@@ -25,7 +25,7 @@ public class Filters {
 	{
 		Vector<DatoMeteo> datiFiltrati = new Vector<DatoMeteo>();
 		
-		for (DatoMeteo d : (Vector<DatoMeteo>)daFiltrare.clone())
+		for (DatoMeteo d : daFiltrare)
 			if (d.confrontaData(inizio))
 				datiFiltrati.add(d);
 		
@@ -43,7 +43,7 @@ public class Filters {
 	public Vector<DatoMeteo> filtraDatiMeteo(Vector<DatoMeteo> daFiltrare, Date inizio, Date fine)
 	{
 		Vector<DatoMeteo> datiFiltrati = new Vector<DatoMeteo>();
-		for(DatoMeteo d : (Vector<DatoMeteo>)daFiltrare.clone())
+		for(DatoMeteo d : daFiltrare)
 			if (d.confrontaData(inizio) && !d.confrontaData(fine))
 				datiFiltrati.add(d);
 		return datiFiltrati;
@@ -58,9 +58,9 @@ public class Filters {
 	 * @return Vettore contenente le città filtrate
 	 */
 	public Vector<Citta> filtraCittaInRaggio(Vector<Citta> daFiltrare, int raggio)
-	{
+	{		
 		Vector<Citta> cittaFiltrate = new Vector<Citta>();
-		for(Citta c : (Vector<Citta>)daFiltrare.clone())
+		for(Citta c : daFiltrare)
 			if(c.calcolaDistanza(daFiltrare.elementAt(0)) < (double) raggio)
 				cittaFiltrate.add(c);
 		return cittaFiltrate;
@@ -77,7 +77,7 @@ public class Filters {
 	{
 		Vector<Citta> cittaFiltrate = new Vector<Citta>();
 		for(int i=0; i<numero && i<daFiltrare.size(); i++)
-			cittaFiltrate.add(((Vector<Citta>)daFiltrare.clone()).elementAt(i));
+			cittaFiltrate.add(daFiltrare.elementAt(i));
 		return cittaFiltrate;
 	}
 	

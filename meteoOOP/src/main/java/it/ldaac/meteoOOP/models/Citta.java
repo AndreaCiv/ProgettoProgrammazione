@@ -10,12 +10,12 @@ import org.json.simple.JSONObject;
 
 /**
  * 
- * Implements JSONAble
+ * Implements JSONAble, Cloneable
  * Classe che definisce una città e i suoi dati principali, con la sua raccolta di dati meteo
  * 
  * @author andreacivitarese, lucadambrosio
  */
-public class Citta implements JSONAble {
+public class Citta implements JSONAble, Cloneable {
 	
 	/**
 	 * Nome della città
@@ -151,7 +151,7 @@ public class Citta implements JSONAble {
 	 */
 	public Vector<DatoMeteo> getDatiMeteo()
 	{
-		return (Vector<DatoMeteo>)this.datiMeteo.clone();
+		return this.datiMeteo;
 	}
 	
 	/**
@@ -210,6 +210,15 @@ public class Citta implements JSONAble {
 		double distanza = Math.toDegrees(d0)*60D*1.852D;
 		
 		return distanza;
+	}
+	
+	/**
+	 * Crea un clone della città
+	 * @return Clone della città
+	 */
+	public Citta clone()
+	{
+		return new Citta(this.toJSONObject());
 	}
 
 	

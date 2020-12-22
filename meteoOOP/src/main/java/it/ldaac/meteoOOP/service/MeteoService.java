@@ -245,7 +245,7 @@ public class MeteoService {
 	{
 		for(Ricerca r : (Vector<Ricerca>) this.ricerche.clone())
 			if(r.getId() == idRicerca)
-				return r;
+				return r.clone();
 		
 		return null;
 	}
@@ -270,9 +270,9 @@ public class MeteoService {
 		Vector<Citta> cittaFiltrate = new Vector<Citta>();
 		try {
 			if(cnt == 50)
-				cittaFiltrate = filtri.filtraCittaInRaggio((Vector<Citta>) this.ottieniRicerca(idRicerca).getCitta().clone(), raggio);
+				cittaFiltrate = filtri.filtraCittaInRaggio(this.ottieniRicerca(idRicerca).getCitta(), raggio);
 			else
-				cittaFiltrate = filtri.filtraCittaInNumero(filtri.filtraCittaInRaggio((Vector<Citta>) this.ottieniRicerca(idRicerca).getCitta().clone(), raggio), cnt);
+				cittaFiltrate = filtri.filtraCittaInNumero(filtri.filtraCittaInRaggio(this.ottieniRicerca(idRicerca).getCitta(), raggio), cnt);
 		} catch (NullPointerException e) {
 			throw new IdNotFoundException();
 		}
@@ -283,7 +283,7 @@ public class MeteoService {
 				try {
 					DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
 					Date data = dateFormat.parse(data1);
-					c.setDatiMeteo(filtri.filtraDatiMeteo((Vector<DatoMeteo>) c.getDatiMeteo().clone(), data));
+					c.setDatiMeteo(filtri.filtraDatiMeteo(c.getDatiMeteo(), data));
 				} catch (Exception e) {
 					throw new DateNotValidException();
 				}
@@ -292,7 +292,7 @@ public class MeteoService {
 					DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
 					Date dataInizio = dateFormat.parse(data1);
 					Date dataFine = dateFormat.parse(data2);
-					c.setDatiMeteo(filtri.filtraDatiMeteo((Vector<DatoMeteo>) c.getDatiMeteo().clone(), dataInizio, dataFine));
+					c.setDatiMeteo(filtri.filtraDatiMeteo(c.getDatiMeteo(), dataInizio, dataFine));
 				} catch (Exception e) {
 					throw new DateNotValidException();
 				}

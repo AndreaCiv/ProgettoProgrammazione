@@ -9,6 +9,9 @@ package it.ldaac.meteoOOP.exceptions;
  */
 public class DateNotValidException extends Exception {
 
+	/**
+	 * Costruttore per DateNotValidException
+	 */
 	public DateNotValidException() {
 		super("Errore nell'inserimento delle date, usa il formato [dd/mm/yy]");
 	}

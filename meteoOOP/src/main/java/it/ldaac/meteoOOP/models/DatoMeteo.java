@@ -134,8 +134,8 @@ public class DatoMeteo implements JSONAble, Cloneable {
 	 * Metodo per confrontare una data con quella del rilavamento
 	 * 
 	 * @param data Data con la quale confrontare la data del rilevamento
-	 * @return true Se la data del rilevamento è successiva a quella passata come argomento
-	 * @return false Se la data del rilevamento è precedente a quella passata come argomento
+	 * @return true Se la data del rilevamento è successiva a quella passata come argomento, false se
+	 * la data del rilevamento è precedente a quella passata come argomento
 	 */
 	public boolean confrontaData (Date data)
 	{

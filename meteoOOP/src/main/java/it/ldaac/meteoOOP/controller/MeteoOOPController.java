@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.ldaac.meteoOOP.exceptions.BadRequestException;
@@ -41,14 +42,15 @@ public class MeteoOOPController {
 	 * 
 	 * @param body JSONObject contente i parametri di ricerca forniti dall'utente
 	 * @return JSONObject contenente le città coinvolte nella ricerca e i relativi dati meteo istantanei
-	 * @throws org.json.simple.parser.ParseException
-	 * @throws BadRequestException
-	 * @throws MalformedURLException
-	 * @throws IOException
-	 * @throws RaggioNotValidException
-	 * @throws CntNotValidException
+	 * @throws org.json.simple.parser.ParseException Se il parsing del body genera eccezioni
+	 * @throws BadRequestException Se la richiesta all'API di OpenWeather non va a buon fine
+	 * @throws MalformedURLException Se l'URL per la richiesta di dati all'API di OpenWeather non è corretto
+	 * @throws IOException Se si sono verificati errori durante la lettura/scrittura di file
+	 * @throws RaggioNotValidException Se il raggio passato dall'utente non è valido
+	 * @throws CntNotValidException Se il numero di città da ricercare passato dall'utente non è valido
 	 */
 	@RequestMapping(value = "/avviaRicerca", method = RequestMethod.POST)
+	@ResponseBody
 	public JSONObject avviaRicerca(@RequestBody JSONObject body) throws org.json.simple.parser.ParseException, BadRequestException, MalformedURLException, IOException, RaggioNotValidException, CntNotValidException
 	{
 		int cnt;
@@ -88,13 +90,14 @@ public class MeteoOOPController {
 	 * 
 	 * @param body JSONObject contenente i parametri forniti dall'utente per generare le statistiche
 	 * @return JSONObject contenente le statistiche desiderate dall'utente
-	 * @throws DateNotValidException
-	 * @throws StatsNotValidException
-	 * @throws IdNotFoundException
-	 * @throws RaggioNotValidException
-	 * @throws CntNotValidException
+	 * @throws DateNotValidException Se le date per il filtraggio dei dati passate dall'utente non sono valide
+	 * @throws StatsNotValidException Se il tipo di stats richieste dall'utente non è valido
+	 * @throws IdNotFoundException Se l'id della ricerca passato dall'utente non è presente nel database
+	 * @throws RaggioNotValidException Se il raggio passato dall'utente non è valido
+	 * @throws CntNotValidException Se il numero di città da ricercare passato dall'utente non è valido
 	 */
 	@RequestMapping(value = "/stats", method = RequestMethod.POST)
+	@ResponseBody
 	public JSONObject stats(@RequestBody JSONObject body) throws DateNotValidException, StatsNotValidException, IdNotFoundException, RaggioNotValidException, CntNotValidException
 	{	
 		long idRicerca = Long.parseLong(body.get("id").toString());
@@ -137,8 +140,7 @@ public class MeteoOOPController {
 	/**
 	 * Rotta per salvare le ricerche effettuate in formato JSON su un file locale
 	 * 
-	 * @return true se il salvataggio è avvenuto correttamente
-	 * @return false se il salvataggio non è avvenuto
+	 * @return true se il salvataggio è avvenuto correttamente, false se il salvataggio non è avvenuto
 	 */
 	@RequestMapping(value = "/save", method = RequestMethod.GET)
 	public boolean save()
@@ -154,8 +156,7 @@ public class MeteoOOPController {
 	/**
 	 * Rotta che permette all'utente di caricare un database da un file
 	 * 
-	 * @return true se il caricamento è stato effettuato con successo
-	 * @return false se il caricamento non è stato effettuato
+	 * @return true se il caricamento è stato effettuato con successo, false se il caricamento non è stato effettuato
 	 */
 	@RequestMapping(value = "/getFromFile", method = RequestMethod.GET)
 	public boolean caricaDaFile()

@@ -45,10 +45,10 @@ public class DataParser extends Parser {
 	 * @param lon Longitudine del punto centrale della ricerca
 	 * @param cnt Numero di città da ricercare
 	 * @return Vettore di città con relativi dati meteo istantanei
-	 * @throws org.json.simple.parser.ParseException
-	 * @throws BadRequestException
-	 * @throws MalformedURLException
-	 * @throws IOException
+	 * @throws org.json.simple.parser.ParseException Se il parsing del body genera eccezioni
+	 * @throws BadRequestException Se la richiesta all'API di OpenWeather non va a buon fine
+	 * @throws MalformedURLException Se l'URL per la richiesta di dati all'API di OpenWeather non è corretto
+	 * @throws IOException Se si verificano problemi durante l'input/output
 	 */
 	public Vector<Citta> richiestaDatiMeteo (double lat, double lon, int cnt) throws org.json.simple.parser.ParseException, BadRequestException, MalformedURLException, IOException
 	{
@@ -104,6 +104,7 @@ public class DataParser extends Parser {
 	 * @param lat Latitudine
 	 * @param lon Longitudine
 	 * @param cnt Numero di città da cercare
+	 * @param units Stringa che definisce il tipo di unità con le quali l'API di Openweather deve fornire i dati
 	 * @return URL sotto forma di stringa per chiamare l'API di OpenWeather
 	 */
 	public String URLGenerator(double lat, double lon, int cnt, String units)

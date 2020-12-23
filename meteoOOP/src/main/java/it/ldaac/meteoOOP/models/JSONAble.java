@@ -10,5 +10,12 @@ import org.json.simple.JSONObject;
  * @author andreacivitarese, lucadambrosio
  */
 public interface JSONAble {
+	
+	/**
+	 * 
+	 * Metodo per ottenere un JSONObject contenente tutti i dati dalla classe che implementa l'interfaccia
+	 * 
+	 * @return JSONObject contenente i dati della classe
+	 */
 	public JSONObject toJSONObject();
 }

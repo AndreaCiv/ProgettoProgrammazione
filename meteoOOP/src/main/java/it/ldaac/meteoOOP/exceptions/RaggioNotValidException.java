@@ -9,6 +9,9 @@ package it.ldaac.meteoOOP.exceptions;
  */
 public class RaggioNotValidException extends Exception {
 
+	/**
+	 * Costruttore per RaggioNotValidException
+	 */
 	public RaggioNotValidException() {
 		super("Raggio non valido, inserisci un raggio maggiore di 0");
 	}

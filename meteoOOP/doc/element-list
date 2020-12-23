@@ -4,4 +4,5 @@ it.ldaac.meteoOOP.exceptions
 it.ldaac.meteoOOP.models
 it.ldaac.meteoOOP.service
 it.ldaac.meteoOOP.statsAndFilters
+it.ldaac.meteoOOP.testModels
 it.ldaac.meteoOOP.utilities

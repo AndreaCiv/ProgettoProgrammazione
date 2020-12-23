@@ -127,7 +127,7 @@ public class MeteoService {
 	/**
 	 * Salva su un file JSON il vettore delle ricerche con tutti i loro dati che può essere ricaricato ad un nuovo avvio
 	 * 
-	 * @throws IOException
+	 * @throws IOException Se si sono verificati errori durante la lettura/scrittura di file
 	 */
 	public void salvaSuFile() throws IOException
 	{
@@ -152,8 +152,8 @@ public class MeteoService {
 	/**
 	 * Metodo per caricare il vettore delle ricerche da un file JSON
 	 * 
-	 * @throws IOException
-	 * @throws ParseException
+	 * @throws IOException Se si sono verificati errori durante la lettura/scrittura di file
+	 * @throws ParseException Se il parsing del body genera eccezioni
 	 */
 	public void caricaDaFile() throws IOException, ParseException
 	{
@@ -181,10 +181,10 @@ public class MeteoService {
 	 * 
 	 * @param richiesta Richiesta tramite la quale avviare la ricerca
 	 * @return JSONObject contenete i dati instantanei delle città coinvolte nella ricerca
-	 * @throws BadRequestException
-	 * @throws ParseException
-	 * @throws MalformedURLException
-	 * @throws IOException
+	 * @throws BadRequestException Se la richiesta all'API di OpenWeather non va a buon fine
+	 * @throws ParseException Se il parsing del body genera eccezioni
+	 * @throws MalformedURLException Se l'URL per la richiesta di dati all'API di OpenWeather non è corretto
+	 * @throws IOException Se si sono verificati errori durante la lettura/scrittura di file
 	 */
 	public JSONObject avviaRicerca(Richiesta richiesta) throws BadRequestException, ParseException, MalformedURLException, IOException
 	{
@@ -229,8 +229,7 @@ public class MeteoService {
 	 * Metodo per ottenera una specifica ricerca tramite il suo id
 	 * 
 	 * @param idRicerca id della ricerca da ottenere
-	 * @return Ricerca identificata da quell'id
-	 * @return null se non esiste alcuna ricerca contenente quell'id
+	 * @return Ricerca identificata da quell'id, null se non esiste alcuna ricerca contenente quell'id
 	 */
 	public Ricerca ottieniRicerca (long idRicerca)
 	{
@@ -251,9 +250,9 @@ public class MeteoService {
 	 * @param raggio raggio in km entro il quale prendere in considerazione le città per generare le statistiche
 	 * @param cnt numero di città entro il raggio sul quale generare le statistiche
 	 * @return JSONObject contenente le statistiche richieste
-	 * @throws StatsNotValidException
-	 * @throws IdNotFoundException
-	 * @throws DateNotValidException
+	 * @throws StatsNotValidException Se il tipo di stats richieste dall'utente non è valido
+	 * @throws IdNotFoundException Se l'id della ricerca passato dall'utente non è presente nel database
+	 * @throws DateNotValidException Se le date per il filtraggio dei dati passate dall'utente non sono valide
 	 */
 	@SuppressWarnings("unchecked")
 	public JSONObject generaStats(long idRicerca, String tipoStats, String data1, String data2, int raggio, int cnt) throws StatsNotValidException, IdNotFoundException, DateNotValidException 

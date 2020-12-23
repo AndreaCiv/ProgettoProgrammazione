@@ -21,6 +21,7 @@ public class Richiesta implements JSONAble {
 	 * @param nomeCitta Nome della città centro del cerchio di ricerca
 	 * @param raggio    Raggio di ricerca in km
 	 * @param cnt       Numero di città da ricercare
+	 * @param durataRaccoltaDati Periodo di tempo in millisecondi durante il quale deve essere effettuata l'aggiunta di dati
 	 */
 	public Richiesta(String nomeCitta, int raggio, int cnt, long durataRaccoltaDati)
 	{

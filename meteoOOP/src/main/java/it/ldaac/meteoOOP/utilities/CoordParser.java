@@ -20,6 +20,12 @@ import org.json.simple.parser.ParseException;
  */
 public class CoordParser extends Parser {
 
+	/**
+	 * Costruttore per CoordParser
+	 * Passa al costruttore della superclasse Parser l'API key
+	 * 
+	 * @param apiKey Key dell'API di OpenWeather
+	 */
 	public CoordParser(String apiKey) {
 		super(apiKey);
 	}
@@ -31,9 +37,9 @@ public class CoordParser extends Parser {
 	 * @param nomeCitta Nome della città della quale vogliamo sapere le coordinate
 	 * @return Le coordinate della città cercata in un vettore di double, nel quale, alla posizione 0 c'è 
 	 * la latitudine, alla posizione 1 la longitudine;
-	 * @throws IOException 
-	 * @throws MalformedURLException 
-	 * @throws ParseException 
+	 * @throws IOException Se si verificano problemi durante l'input/output
+	 * @throws MalformedURLException Se l'URL per la richiesta di dati all'API di OpenWeather non è corretto
+	 * @throws ParseException Se il parsing del body genera eccezioni
 	 */
 	public double[] richiestaCoord(String nomeCitta) throws MalformedURLException, IOException, ParseException
 	{

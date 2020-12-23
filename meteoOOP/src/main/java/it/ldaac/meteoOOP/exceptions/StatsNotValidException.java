@@ -9,6 +9,9 @@ package it.ldaac.meteoOOP.exceptions;
  */
 public class StatsNotValidException extends Exception {
 
+	/**
+	 * Costruttore per StatsNotValidException
+	 */
 	public StatsNotValidException() {
 		super("Il campo stats non è valido, utilizzare [all/temp/tempPerc/vento]");
 	}

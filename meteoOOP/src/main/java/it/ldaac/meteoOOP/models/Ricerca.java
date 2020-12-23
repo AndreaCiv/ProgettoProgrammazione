@@ -38,10 +38,12 @@ public class Ricerca implements JSONAble, Cloneable {
 	 * Costruttore per Ricerca
 	 * 
 	 * @param richiesta Richiesta tramite la quale viene generata la ricerca
-	 * @throws BadRequestException
-	 * @throws ParseException
-	 * @throws IOException 
-	 * @throws MalformedURLException 
+	 * @param dataParser DataParser dal quale ottenere i dati meteo
+	 * @param coordParser CoordParser dal quale ottenere le coordinate della città centrale della ricerca
+	 * @throws BadRequestException Se la richiesta all'API di OpenWeather non va a buon fine
+	 * @throws ParseException Se il parsing del body genera eccezioni
+	 * @throws IOException Se si sono verificati errori durante la lettura/scrittura di file
+	 * @throws MalformedURLException Se l'URL per la richiesta di dati all'API di OpenWeather non è corretto
 	 */
 	public Ricerca(Richiesta richiesta, CoordParser coordParser, DataParser dataParser) throws BadRequestException, ParseException, MalformedURLException, IOException
 	{
@@ -114,8 +116,7 @@ public class Ricerca implements JSONAble, Cloneable {
 	 * Metodo per aggiungere dati meteo a tutte le città della ricerca ottenendoli dall'API di OpenWeather
 	 * 
 	 * @param dataParser DataParser dal quale ottenere i dati meteo
-	 * @return true Se l'aggiunta dei dati è andata a buon fine
-	 * @return fasle Se l'aggiunta dei dati non è andata a buon fine
+	 * @return true Se l'aggiunta dei dati è andata a buon fine, false Se l'aggiunta dei dati non è andata a buon fine
 	 */
 	public boolean aggiungiDatiMeteo(DataParser dataParser)
 	{

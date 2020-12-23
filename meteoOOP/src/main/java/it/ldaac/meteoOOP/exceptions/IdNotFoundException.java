@@ -9,6 +9,9 @@ package it.ldaac.meteoOOP.exceptions;
  */
 public class IdNotFoundException extends Exception {
 
+	/**
+	 * Costruttore per IdNotFoundException
+	 */
 	public IdNotFoundException() {
 		super("id della ricerca non trovato");
 	}

@@ -49,7 +49,7 @@ public class MeteoOOPController {
 	 * @throws RaggioNotValidException Se il raggio passato dall'utente non è valido
 	 * @throws CntNotValidException Se il numero di città da ricercare passato dall'utente non è valido
 	 */
-	@RequestMapping(value = "/avviaRicerca", method = RequestMethod.POST)
+	@RequestMapping(value = "/ricerca", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject avviaRicerca(@RequestBody JSONObject body) throws org.json.simple.parser.ParseException, BadRequestException, MalformedURLException, IOException, RaggioNotValidException, CntNotValidException
 	{

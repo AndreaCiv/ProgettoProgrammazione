@@ -7,9 +7,9 @@
 Lo scopo di questo progetto è quello di offrire un servizio meteo all'utente con cui, scelta a suo piacimento una città, si visualizzino tutte le informazioni attuali relative alla temperatura, temperatura percepita e velocità del vento delle città circostanti a quella scelta in quel momento, due ore, statistiche.
 
 
-## L'applicazione
+# L'applicazione
 
-Tramite L'API 
+Tramite L'API , openwhether,
 
 
 

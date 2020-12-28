@@ -9,10 +9,32 @@ Lo scopo di questo progetto è quello di offrire un servizio meteo all'utente co
 
 # L'applicazione
 
-Tramite L'API , openwhether,
+Tramite L'API openwhether,
 
 
+## Rotte disponibili
+ricerca 
+getfromdatabase
+stats {​​​​​​​
+"nome": "milano",
+"raggio": 100,
+"durata_raccolta": 1,
+"cnt": 50
+}​​​​​​​
 
+{​​​​​
+"id": 34,
+"tipo":"all",
+"raggio":100,
+"cnt": 50,
+"from":"26/12/20",
+"to": "30/12/20"
+}​​​​​
+
+  
+  
+## codice rotte
+  
 ## Software utilizzati
 * [Eclipse](https://www.eclipse.org/downloads/) - Ambiente di sviluppo
 * [UML Designer](http://www.umldesigner.org/) - software per la realizzazione dei diagrammi UML
@@ -28,7 +50,8 @@ Tramite L'API , openwhether,
 
 
 
+<img src="/Users/luca/Desktop/OOP.jpg"> caso d'uso delle rotte 
 
-<img src="/Users/luca/Desktop/OOP.jpg">
-<img src="diagclassi.jpg">
-<img src="diagseq.jpg">
+<img src="diagclassi.jpg"> aggiungere da eclipse 
+
+<img src="diagseq.jpg"> 

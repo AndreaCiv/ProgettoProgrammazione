@@ -15,13 +15,22 @@ Tramite L'API OpenWeather il programma riceve, salva e processa i dati meteo rig
 
 ## Rotte disponibili
 
-|  Rotta     |    Metodo    |        Funzione                        |
-|------------|--------------|----------------------------------------|
-|   /ricerca |         POST | Avvia ricerca e mostra dati istantanei |
+Dal programma vengono rese disponibili le seguenti rotte sulla porta 8080 del localhost:
+
+| Rotta         |    Metodo    |        Funzione                        |
+|---------------|--------------|----------------------------------------|
+| /ricerca      | POST         | Avvia ricerca e mostra dati istantanei |
+| /stats        | POST         | Richiede statistiche                   |
+| /save         | GET          | Salva le ricerche effettuate           |
+| /getFromFile  | GET          | Carica le ricerche da un file          |
+| /getDataBase  | GET          | Richiede tutti i dati sulle ricerche   |
+| /removeAll    | GET          | Rimuove tutte le ricerche salvate      |
 
 
 ### Ricerca 
-getfromdatabase
+Per poter effettuare una ricerca viene resa disponibile la rotta "/ricerca", che deve essere utilizzata con il metodo POST.
+I parametri della ricerca devono essere passati tramite il body della richiesta che deve contenere un file JSON così formattato:
+
 stats {​​​​​​​
 "nome": "milano",
 "raggio": 100,

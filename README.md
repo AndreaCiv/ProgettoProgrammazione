@@ -10,7 +10,7 @@ Una volta effettuata la richiesta, il programma cercherà ed aggiungerà dati me
 
 # L'applicazione
 
-Tramite L'API OpenWeather il programma riceve, salva e processa i dati meteo riguardanti le città circostanti a quella cercata dall'utente; per far questo utilizza più precisamente l'API "Cities in circle", la quale descrizione è disponibile al seguente link: https://openweathermap.org/current#cycle
+Tramite L'API OpenWeather il programma riceve, salva e processa i dati meteo riguardanti le città circostanti a quella cercata dall'utente; per far questo utilizza più precisamente l'API "Cities in circle", la quale descrizione è disponibile al seguente [link](https://openweathermap.org/current#cycle)
 
 
 ## Rotte disponibili
@@ -31,21 +31,31 @@ Dal programma vengono rese disponibili le seguenti rotte sulla porta 8080 del lo
 Per poter effettuare una ricerca viene resa disponibile la rotta "/ricerca", che deve essere utilizzata con il metodo POST.
 I parametri della ricerca devono essere passati tramite il body della richiesta che deve contenere un file JSON così formattato:
 
-stats {​​​​​​​
-"nome": "milano",
-"raggio": 100,
-"durata_raccolta": 1,
-"cnt": 50
-}​​​​​​​
+{
+"nome": "(nome della città centro del cerchio di ricerca)",
+"raggio": (raggio di ricerca in km),
+"durata_raccolta": (durata del periodo di ricerca e aggiunta dei dati in ore),
+"cnt": (numero di città da ricercare, compreso tra 1 e 50)
+}
 
-{​​​​​
-"id": 34,
-"tipo":"all",
-"raggio":100,
-"cnt": 50,
-"from":"26/12/20",
-"to": "30/12/20"
-}​​​​​
+La rottà restituirà un file JSON contenente i seguenti campi:
+"id_ricerca" che conterrà l'id assegnato alla ricerca che è stata avviata in seguito alla richiesta
+"dati" che sarà un array contenente tutte le città che sono state incluse nella ricerca e, per ognuna di queste, il dato meteo istantaneo ad essa riferito.
+
+### Statistiche
+Per poter ottenere delle statistiche riguardo i dati meteo delle città di una determinata ricerca viene resa disponibile la rott "/stats", che deve essere utilizzata con il metodo POST.
+I parametri da utilizzare per generare le statistiche devono essere passati tramite il body della richiesta che deve contenere un file JSON coì formattato:
+
+{
+"id": (id della ricerca alla quale si fa riferimento per generare le statistiche),
+"tipo":"(tipo di dati sui quali generare le statistiche)",
+"raggio":(raggio entro il quale vengono prese in considerazione le città),
+"cnt": (numero di città da prendere in considerazione),
+"from":"(data dalla quale prendere in considerazione i dati meteo)",
+"to": "(data fino alla quale prendere in considerazione i dati meteo)"
+}
+
+La rotta restituirà un file JSON contenente le statistiche desiderate
 
   
   

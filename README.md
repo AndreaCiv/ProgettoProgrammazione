@@ -15,9 +15,9 @@ Tramite L'API OpenWeather il programma riceve, salva e processa i dati meteo rig
 
 ## Rotte disponibili
 
-|Rotta|Metodo|Funzione|
-|_____|______|________|
-| /ricerca | POST | Avvia ricerca e mostra dati istantanei |
+|  Rotta     |    Metodo    |        Funzione                        |
+|------------|--------------|----------------------------------------|
+|   /ricerca |         POST | Avvia ricerca e mostra dati istantanei |
 
 
 ### Ricerca 

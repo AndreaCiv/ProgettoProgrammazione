@@ -23,6 +23,7 @@ Dal programma vengono rese disponibili le seguenti rotte sulla porta 8080 del lo
 | /getDataBase  | GET          | Richiede tutti i dati sulle ricerche   |
 | /removeAll    | GET          | Rimuove tutte le ricerche salvate      |
 
+---
 
 ### Ricerca 
 Per poter effettuare una ricerca viene resa disponibile la rotta "/ricerca", che deve essere utilizzata con il metodo POST.
@@ -101,6 +102,8 @@ Durante l'utilizzo della rotta possono essere lanciate, in caso di errori, le se
 * **IOException** : se ci sono errori durante la lettura dei dati forniti da OpenWeather
 * **RaggioNotValidException** : se l'utente ha inserito un raggio minore o uguale a 0
 * **CntNotValidException** : se il numero di citta da ricercare inserito dall'utente è minore di 1 o maggiore di 50
+
+---
 
 ### Statistiche
 Per poter ottenere delle statistiche riguardo i dati meteo delle città di una determinata ricerca viene resa disponibile la rott "/stats", che deve essere utilizzata con il metodo POST.
@@ -230,6 +233,36 @@ Durante l'utilizzo della rotta possono essere lanciate, in caso di errori, le se
 * **IdNotFoundException** : se l'id della ricerca dalla quale prendere i dati non esiste all'interno del database
 * **StatsNotValidException** : se il tipo di statistiche richiesto dall'utente non è valido
 * **DateNotValidException** : se le date inserite non sono nel formato corretto
+
+---
+
+### Salvataggio su file
+
+Viene data la possibilità all'utente di salvare tutte le ricerche e i dati raccolti fino a quel momento su un file JSON tramite la rotta "/save", che deve essere utilizzata tramite il metodo GET.
+All'utente verrà ritornato *true* se il salvataggio è andato a buon fine, *false* altrimenti.
+Il salvataggio si troverà nel file denominato database.JSON presente all'interno della cartella del progetto e conterrà un array di ricerche, e ognuna di queste sarà formattata allo stesso modo della risposta della rotta "/ricerca".
+
+---
+
+### Caricamento del database da un file
+
+È possibile per l'utente caricare un database in formato JSON correttamente formattato anche dopo l'avvio del programma, per far questo bisogna sostituire il file database.JSON presente nella cartella del progetto con il database da caricare e rinominarlo allo stesso modo.
+Dopo aver sostituito il file è possibile utilizzare la rotta "/getFromFile", tramite il metodo GET, che restituirà *true* se il database è stato caricato correttamente, *false* altrimenti.
+Il caricamento di un database cancella tutte le ricerche precedenti.
+
+---
+
+### Ottenere il database corrente
+
+Tramite la rotta "/getDataBase", che deve essere utilizzata tramite il metodo GET, è possibile ottenere il database formattato in JSON in modo che possa essere poi ricaricato se l'utente lo desidera
+
+---
+
+### Cancellare tutte le ricerche
+
+Utilizzando la rotta "/removeAll" tramite il metodo DELETE, l'utente può cancellare tutte le ricerche effettuate fino a quel momento
+
+
 
 ## codice rotte
   

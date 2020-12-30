@@ -56,15 +56,15 @@ Se si invia una richiesta come quella in esempio si avvierà una ricerca che avr
 La rottà restituirà un file JSON contenente i seguenti campi:
 * **"id_ricerca"** che conterrà l'id assegnato alla ricerca che è stata avviata in seguito alla richiesta
 * **"dati"** che sarà un array contenente tutte le città che sono state incluse nella ricerca e ognuna di queste con i seguenti campi:
- * **nome_citta"** nome della città
- * **lat** latitudine della città in gradi sessagesimali
- * **lon** longitudine della città in gradi sessagesimali
- * **id** id della città nei database di OpenWeather
- * **dati_meteo** array con all'interno il dato meteo istantaneo della città, con i campi:
-  * **temperatura** temperatura effettiva in °C
-  * **temperatura_percepita** temperatura percepita in °C
-  * **velocità_vento** velocità del vento in km/h
-  * **data** data del rilevamento in formato UNIX, ossia il numero di millisecondi passati dal 1 Gennaio 1970
+    * **nome_citta"** nome della città
+    * **lat** latitudine della città in gradi sessagesimali
+    * **lon** longitudine della città in gradi sessagesimali
+    * **id** id della città nei database di OpenWeather
+    * **dati_meteo** array con all'interno il dato meteo istantaneo della città, con i campi:
+        * **temperatura** temperatura effettiva in °C
+        * **temperatura_percepita** temperatura percepita in °C
+        * **velocità_vento** velocità del vento in km/h
+        * **data** data del rilevamento in formato UNIX, ossia il numero di millisecondi passati dal 1 Gennaio 1970
   
 Nel caso dell'esempio, la prima parte del ritorno sarebbe simile a questa:
 

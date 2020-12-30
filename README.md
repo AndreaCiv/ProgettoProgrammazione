@@ -71,6 +71,8 @@ Dove:
   * **vento** : genera statistiche riguardo la velocità del vento
  * **"raggio"** : definisce il raggio della circonferenza all'interno della quale considerare le città per generare le statistiche, in km
  * **cnt** : numero di città da prendere in considerazione per generare le statistiche
+ * **from** : data a partire dalla quale prendere in considerzione i dati meteo per generare le statistiche, nel formato [ gg/mm/aa ]
+ * **to** : data fino alla quale prendere in considerzione i dati meteo per generare le statistiche, nel formato [ gg/mm/aa ]
 
 
 La rotta restituirà un file JSON contenente le statistiche desiderate

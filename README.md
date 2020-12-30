@@ -7,6 +7,7 @@ Una volta effettuata la richiesta, il programma cercherà ed aggiungerà dati me
 # L'applicazione
 
 Tramite L'API OpenWeather il programma riceve, salva e processa i dati meteo riguardanti le città circostanti a quella cercata dall'utente; per far questo utilizza più precisamente l'API "Cities in circle", la quale descrizione è disponibile al seguente [link](https://openweathermap.org/current#cycle)
+
 Più in particolare con dati meteo si intendono la temperatura effettiva, la temperatura percepita e la velocità del vento.
 
 
@@ -21,7 +22,7 @@ Dal programma vengono rese disponibili le seguenti rotte sulla porta 8080 del lo
 | /save         | GET          | Salva le ricerche effettuate           |
 | /getFromFile  | GET          | Carica le ricerche da un file          |
 | /getDataBase  | GET          | Richiede tutti i dati sulle ricerche   |
-| /removeAll    | GET          | Rimuove tutte le ricerche salvate      |
+| /removeAll    | DELETE       | Rimuove tutte le ricerche salvate      |
 
 ---
 

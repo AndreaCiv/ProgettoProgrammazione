@@ -44,6 +44,11 @@ Un esempio può essere:
     "cnt": 40
 }
 ```
+Dove:
+* **"nome"** : nome della città centro del cerchio di ricerca
+* **"raggio"** : raggio, in km, entro il quale considerare le città che devono essere contenute nella risposta
+* **"durata_raccolta"** : periodo di tempo, in ore, durante il quale, ogni 2 ore, devono essere richiesti nuovi dati meteo e aggiunti alle città coinvolte nella ricerca
+* **"cnt"** : numero di città che devono essere contenute nella risposta
 
 Verrà quindi creata una ricerca avente come città centrale quella scelta dall'utente, al quale verranno poi restituiti i dati riguardanti le città che rientramo nei parametri di ricerca.
 
@@ -90,12 +95,12 @@ Nel caso dell'esempio, la prima parte del ritorno sarebbe simile a questa:
 Si noti che l'id della ricerca corrisponde con quello della città centrale, in questo caso Milano.
 
 Durante l'utilizzo della rotta possono essere lanciate, in caso di errori, le seguenti eccezioni:
-* **ParseException** se si verifica un errore durante il parsing dei dati forniti da OpenWeather
-* **BadRequestException** se la richiesta dei dati all'API di OpenWeather non è andata a buon fine
-* **MalformedURLException** se l'URL della richiesta ad OpenWeather non è formato correttamente
-* **IOException** se ci sono errori durante la lettura dei dati forniti da OpenWeather
-* **RaggioNotValidException** se l'utente ha inserito un raggio minore o uguale a 0
-* **CntNotValidException** se il numero di citta da ricercare inserito dall'utente è minore di 1 o maggiore di 50
+* **ParseException** : se si verifica un errore durante il parsing dei dati forniti da OpenWeather
+* **BadRequestException** : se la richiesta dei dati all'API di OpenWeather non è andata a buon fine
+* **MalformedURLException** : se l'URL della richiesta ad OpenWeather non è formato correttamente
+* **IOException** : se ci sono errori durante la lettura dei dati forniti da OpenWeather
+* **RaggioNotValidException** : se l'utente ha inserito un raggio minore o uguale a 0
+* **CntNotValidException** : se il numero di citta da ricercare inserito dall'utente è minore di 1 o maggiore di 50
 
 ### Statistiche
 Per poter ottenere delle statistiche riguardo i dati meteo delle città di una determinata ricerca viene resa disponibile la rott "/stats", che deve essere utilizzata con il metodo POST.
@@ -111,6 +116,18 @@ I parametri da utilizzare per generare le statistiche devono essere passati tram
 | "from"              | "(data dalla quale prendere in considerazione i dati meteo)"                  |
 | "to"                | "(data fino alla quale prendere in considerazione i dati meteo)"              |
 
+Un esempio può essere, riferendosi a quello fatto sopra, il seguente:
+```
+{
+    "id": 3173435,
+    "tipo":"all",
+    "raggio":100,
+    "cnt": 40,
+    "from":"29/12/20",
+    "to": "31/12/20"
+}
+```
+
 Dove:
 * **"id"** : il codice della ricerca dalla quale si vogliono prendere i dati per generare le statistiche, corrisponde al **City ID** della città centrale della ricerca.
 * **"tipo"** : tipo di statistiche da generare, deve essere scelto tra [ all / temp / tempPerc / vento ]:
@@ -123,12 +140,97 @@ Dove:
  * **from** : data a partire dalla quale prendere in considerzione i dati meteo per generare le statistiche, nel formato [ gg/mm/aa ]
  * **to** : data fino alla quale prendere in considerzione i dati meteo per generare le statistiche, nel formato [ gg/mm/aa ] (quest'ultimo campo può essere omesso, in caso di omissione verranno presi in considerazione tutti i dati meteo a partire dalla data inserita nel campo ***from***
 
+Nel caso dell'esempio si richiedono tutti i tipi di statistiche possibili, riguardanti la ricerca con id *3173435*, ossia quella con città centrale Milano avviata in precedenza con il primo esempio, prendendo in considerazione le prime 40 città entro un raggio di 100km e generandole sulla base dei dati meteo che sono stati rilevati tra il 29/12/20 e il 31/12/20.
 
 La rotta restituirà un file JSON contenente le statistiche desiderate, divise nei seguenti campi:
+* **stats_velocita_vento** : contiente le statistiche riguardanti la velocità del vento
+    * **citta_piu_ventosa** : città con velocità del vento media maggiore 
+        * **nome_citta** : nome della città
+        * **vel_vento_media** : velocità del vento media
+    * **citta_meno_ventosa** : città con velocità del vento media minore
+        * **nome_citta** : nome della città
+        * **vel_vento_media** : velocità del vento media
+    * **citta_piu_variabile** : città con velocità del vento più variabile
+        * **nome_citta** : nome della città
+        * **var_vel_vento** : varianza della velocità del vento
+* **stats_temperatura_perc** : contiene le statistiche riguardanti la temperatura percepita
+    * **citta_piu_calda** : città con temperatura percepita media maggiore
+        * **nome_citta** : nome della città
+        * **temp_perc_media** : temperatura percepita media
+    * **citta_piu_fredda** : città con temperatura percepita media minore
+        * **nome_citta** : nome della città
+        * **temp_perc_media** : temperatura percepita media
+    * **citta_piu_variabile** : città con temperatura percepita più variabile
+        * **nome_citta** : nome della città
+        * **var_temp_perc** : varianza della temperatura percepita
+* **stats_temperatura** : contiene le statistiche riguardanti la temperatura effettiva
+    * **citta_piu_calda** : città con temperatura effettiva media maggiore
+        * **nome_citta** : nome della città
+        * **temp_media** : temperatura effettiva media
+    * **citta_piu_fredda** : città con temperatura effettiva media minore
+        * **nome_citta** : nome della città
+        * **temp_perc_media** : temperatura effettiva media
+    * **citta_piu_variabile** : città con temperatura effettiva più variabile
+        * **nome_citta** : nome della città
+        * **var_temp_perc** : varianza della temperatura effettiva
+ 
+Verrano restituiti tutti i 3 campi principali se il tipo di statistiche richieste è *all*, altrimenti verrà restituito solo il campo richiesto dall'utente.
 
+Nel caso dell'esempio il ritorno sarebbe simile a questo:
+```
+{
+    "stats_velocita_vento": {
+        "citta_piu_ventosa": {
+            "nome_citta": "Milan",
+            "vel_vento_media": 1.0
+        },
+        "citta_meno_ventosa": {
+            "nome_citta": "Buccinasco",
+            "vel_vento_media": 1.0
+        },
+        "citta_piu_variabile": {
+            "nome_citta": "Cologno Monzese",
+            "var_vel_vento": 0.71574
+        }
+    },
+    "stats_temperatura_perc": {
+        "citta_piu_fredda": {
+            "nome_citta": "Rozzano",
+            "temp_perc_media": 1.38
+        },
+        "citta_piu_calda": {
+            "nome_citta": "Cologno Monzese",
+            "temp_perc_media": 1.846
+        },
+        "citta_piu_variabile": {
+            "var_temp_perc": 1.45,
+            "nome_citta": "Baranzate"
+        }
+    },
+    "stats_temperatura": {
+        "citta_piu_fredda": {
+            "nome_citta": "Rozzano",
+            "temp_media": 3.94
+        },
+        "citta_piu_calda": {
+            "nome_citta": "Cologno Monzese",
+            "temp_media": 4.34
+        },
+        "citta_piu_variabile": {
+            "nome_citta": "Baranzate",
+            "var_temp_media": 1.2089
+        }
+    }
+}
+```
 
-  
-  
+Durante l'utilizzo della rotta possono essere lanciate, in caso di errori, le seguenti eccezioni:
+* **RaggioNotValidException** : se l'utente ha inserito un raggio minore o uguale a 0
+* **CntNotValidException** : se il numero di citta da ricercare inserito dall'utente è minore di 1 o maggiore di 50
+* **IdNotFoundException** : se l'id della ricerca dalla quale prendere i dati non esiste all'interno del database
+* **StatsNotValidException** : se il tipo di statistiche richiesto dall'utente non è valido
+* **DateNotValidException** : se le date inserite non sono nel formato corretto
+
 ## codice rotte
   
 ## Software utilizzati

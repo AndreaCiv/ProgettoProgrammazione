@@ -28,12 +28,12 @@ Dal programma vengono rese disponibili le seguenti rotte sulla porta 8080 del lo
 Per poter effettuare una ricerca viene resa disponibile la rotta "/ricerca", che deve essere utilizzata con il metodo POST.
 I parametri della ricerca devono essere passati tramite il body della richiesta che deve contenere un file JSON nel quale devono essere presenti le seguenti coppie "chiave":"valore":
 
-| Chiave                   | Valore                                                         | Esempio        |
-|--------------------------|----------------------------------------------------------------|----------------|
-| "nome"                   | "(nome della città centro del cerchio di ricerca)"             | "Milano"       |
-| "raggio"                 | (raggio di ricerca in km)                                      | 100            |
-| "durata_raccolta"        | (durata del periodo di ricerca e aggiunta dei dati in ore)     | 96             |
-| "cnt"                    | (numero di città da ricercare, compreso tra 1 e 50)            | 40             |
+| Chiave                   | Valore                                                         |
+|--------------------------|----------------------------------------------------------------|
+| "nome"                   | "(nome della città centro del cerchio di ricerca)"             |
+| "raggio"                 | (raggio di ricerca in km)                                      |
+| "durata_raccolta"        | (durata del periodo di ricerca e aggiunta dei dati in ore)     |
+| "cnt"                    | (numero di città da ricercare, compreso tra 1 e 50)            |
 
 Un esempio può essere:
 ```

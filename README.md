@@ -26,23 +26,76 @@ Dal programma vengono rese disponibili le seguenti rotte sulla porta 8080 del lo
 
 ### Ricerca 
 Per poter effettuare una ricerca viene resa disponibile la rotta "/ricerca", che deve essere utilizzata con il metodo POST.
-I parametri della ricerca devono essere passati tramite il body della richiesta che deve contenere un file JSON che deve contnere le seguenti copppie "chiave":"valore":
+I parametri della ricerca devono essere passati tramite il body della richiesta che deve contenere un file JSON nel quale devono essere presenti le seguenti coppie "chiave":"valore":
 
-| Chiave                   | Valore                                                         |
-|--------------------------|----------------------------------------------------------------|
-| "nome"                   | "(nome della città centro del cerchio di ricerca)"             |
-| "raggio"                 | (raggio di ricerca in km)                                      |
-| "durata_raccolta"        | (durata del periodo di ricerca e aggiunta dei dati in ore)     |
-| "cnt"                    | (numero di città da ricercare, compreso tra 1 e 50)            |
+| Chiave                   | Valore                                                         | Esempio        |
+|--------------------------|----------------------------------------------------------------|----------------|
+| "nome"                   | "(nome della città centro del cerchio di ricerca)"             | "Milano"       |
+| "raggio"                 | (raggio di ricerca in km)                                      | 100            |
+| "durata_raccolta"        | (durata del periodo di ricerca e aggiunta dei dati in ore)     | 96             |
+| "cnt"                    | (numero di città da ricercare, compreso tra 1 e 50)            | 40             |
 
+Un esempio può essere:
+```
+{
+    "nome": "Milano",
+    "raggio": 100,
+    "durata_raccolta": 96,
+    "cnt": 40
+}
+```
 
 Verrà quindi creata una ricerca avente come città centrale quella scelta dall'utente, al quale verranno poi restituiti i dati riguardanti le città che rientramo nei parametri di ricerca.
+
 Il programma richiederà all'API di OpenWeather comunque il massimo numero di città consentite, ossia 50, e ne aggiornerà i dati meteo ad esse relativi, mentre il numero di città e i relativi dati ritornati terrà conto del parametro "cnt" fornito dall'utente; questo per fare in modo che poi l'utente possa richiedere statistiche su un numero più alto di città rispetto a quello scelto nell'avvio della ricerca.
+
 Può accadere che nella risposta siano presenti meno città di quelle desiderate dall'utente, questo è dovuto al fatto che all'interno del raggio di ricerca sono presenti meno stazioni meteo di quelle desiderate.
 
+Se si invia una richiesta come quella in esempio si avvierà una ricerca che avrà come città centrale Milano, e all'utente verranno forniti i dati meteo di Milano e delle prime 40 città circostanti in un raggio di 100km; in seguito il programma richiederà e aggiungerà dati meteo alle città coinvolte nella ricerca ogni 2 ore per 96 ore, ossia 4 giorni, al termine o durante i quali l'utente potrà richiedere di generare delle statistiche.
+
 La rottà restituirà un file JSON contenente i seguenti campi:
-"id_ricerca" che conterrà l'id assegnato alla ricerca che è stata avviata in seguito alla richiesta
-"dati" che sarà un array contenente tutte le città che sono state incluse nella ricerca e, per ognuna di queste, il dato meteo istantaneo ad essa riferito.
+* **"id_ricerca"** che conterrà l'id assegnato alla ricerca che è stata avviata in seguito alla richiesta
+* **"dati"** che sarà un array contenente tutte le città che sono state incluse nella ricerca e ognuna di queste con i seguenti campi:
+ * **nome_citta"** nome della città
+ * **lat** latitudine della città in gradi sessagesimali
+ * **lon** longitudine della città in gradi sessagesimali
+ * **id** id della città nei database di OpenWeather
+ * **dati_meteo** array con all'interno il dato meteo istantaneo della città, con i campi:
+  * **temperatura** temperatura effettiva in °C
+  * **temperatura_percepita** temperatura percepita in °C
+  * **velocità_vento** velocità del vento in km/h
+  * **data** data del rilevamento in formato UNIX, ossia il numero di millisecondi passati dal 1 Gennaio 1970
+  
+Nel caso dell'esempio, la prima parte del ritorno sarebbe simile a questa:
+
+```
+{
+    "id_ricerca": 3173435,
+    "dati": [
+        {
+            "nome_citta": "Milan",
+            "dati_meteo": [
+                {
+                    "data": 1609340994000,
+                    "temperatura": 4.07,
+                    "temperatura_percepita": 1.53,
+                    "velocita_vento": 1.0
+                }
+            ],
+            "lon": 9.19,
+            "id": 3173435,
+            "lat": 45.46
+        }
+```
+Si noti che l'id della ricerca corrisponde con quello della città centrale, in questo caso Milano.
+
+Durante l'utilizzo della rotta possono essere lanciate, in caso di errori, le seguenti eccezioni:
+* **ParseException** se si verifica un errore durante il parsing dei dati forniti da OpenWeather
+* **BadRequestException** se la richiesta dei dati all'API di OpenWeather non è andata a buon fine
+* **MalformedURLException** se l'URL della richiesta ad OpenWeather non è formato correttamente
+* **IOException** se ci sono errori durante la lettura dei dati forniti da OpenWeather
+* **RaggioNotValidException** se l'utente ha inserito un raggio minore o uguale a 0
+* **CntNotValidException** se il numero di citta da ricercare inserito dall'utente è minore di 1 o maggiore di 50
 
 ### Statistiche
 Per poter ottenere delle statistiche riguardo i dati meteo delle città di una determinata ricerca viene resa disponibile la rott "/stats", che deve essere utilizzata con il metodo POST.

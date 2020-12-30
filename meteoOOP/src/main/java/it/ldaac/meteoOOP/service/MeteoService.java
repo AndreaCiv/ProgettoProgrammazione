@@ -134,14 +134,8 @@ public class MeteoService {
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("database.JSON")));
 		
 		JSONObject salvataggio = new JSONObject();
-		JSONArray ricerche = new JSONArray();
 		
-		for(Ricerca r : this.ricerche)
-		{
-			ricerche.add(r.toJSONObject());
-		}
-		
-		salvataggio.put("ricerche", ricerche);
+		salvataggio = this.getDataBase();
 		
 		out.println(salvataggio.toJSONString());
 		
@@ -212,9 +206,14 @@ public class MeteoService {
 	 * 
 	 * @return Vettore contenente le ricerche fatte dagli utenti
 	 */
-	public Vector<Ricerca> getDataBase()
+	public JSONObject getDataBase()
 	{
-		return this.ricerche;
+		JSONObject database = new JSONObject();
+		JSONArray ricerche = new JSONArray();
+		for (Ricerca r : this.ricerche)
+			ricerche.add(r.toJSONObject());
+		database.put("ricerche", ricerche);
+		return database;
 	}
 	
 	/**

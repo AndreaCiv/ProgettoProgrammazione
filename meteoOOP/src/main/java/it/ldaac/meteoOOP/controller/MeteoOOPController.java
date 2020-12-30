@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Vector;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -175,7 +176,7 @@ public class MeteoOOPController {
 	 * @return JSON contente tutte le ricerche effettuate
 	 */
 	@RequestMapping(value = "/getDataBase", method = RequestMethod.GET)
-	public Vector<Ricerca> getDataBase()
+	public JSONObject getDataBase()
 	{
 		return meteoservice.getDataBase();
 	}
@@ -185,7 +186,7 @@ public class MeteoOOPController {
 	 * 
 	 * @return true quando la rimozione è stata completata
 	 */
-	@RequestMapping(value = "/removeAll", method = RequestMethod.GET)
+	@RequestMapping(value = "/removeAll", method = RequestMethod.DELETE)
 	public boolean removeAll()
 	{
 		this.meteoservice.removeAll();

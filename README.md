@@ -10,6 +10,17 @@ Tramite L'API OpenWeather il programma riceve, salva e processa i dati meteo rig
 
 Più in particolare con dati meteo si intendono la temperatura effettiva, la temperatura percepita e la velocità del vento.
 
+## Avvio
+
+All'avvio dell'applicazione verrà caricato dal file database.JSON, presente all'interno della cartella del programma, il salvataggio di tutte le ricerche presenti al suo interno, questo permette all'utente di generare statistiche su ricerche effettuate in passato.
+Se durante il caricamento viene lanciata una qualunque eccezione, viene inizializzato un nuovo database vuoto.
+
+Vengono poi letti, dal file config.JSON, vari parametri per la configurazzione dell'applicazione, questi sono:
+* **"API_key"** che contiene la chiave per le API di OpenWeather da inserire nell'URL delle richieste di dati
+* **"periodo_aggiornamento"** ossia il periodo di tempo in millisecondi che deve passare tra una richiesta di dati e l'altra durante la raccolta dei dati che segue l'avvio di ogni ricerca, di default è impostata su 7200000 ms, ossia 2 ore.
+* **"units"** il tipo di unità da utilizzare, di default è impostato su "metric", che utilizza i km/h per la velocità del vento e i °C per le temperature, altre possibilità possono essere consultate su [questa pagina](https://openweathermap.org/current#data).
+Se durante la lettura di queste impostazioni viene lanciata qualche eccezione, vengono utilizzate quelle di default.
+
 
 ## Rotte disponibili
 

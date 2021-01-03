@@ -204,7 +204,7 @@ public class MeteoService {
 	/**
 	 * Metodo per ottenere il vettore delle ricerche effettuate
 	 * 
-	 * @return Vettore contenente le ricerche fatte dagli utenti
+	 * @return JSONObject contenente le ricerche fatte dagli utenti
 	 */
 	public JSONObject getDataBase()
 	{

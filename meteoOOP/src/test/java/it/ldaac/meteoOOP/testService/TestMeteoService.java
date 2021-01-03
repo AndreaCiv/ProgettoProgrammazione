@@ -24,6 +24,6 @@ class TestMeteoService {
 	@Test
 	void testIdNotFoundException() {
 		MeteoService service = new MeteoService();
-		IdNotFoundException e = assertThrows(IdNotFoundException.class, ()->service.generaStats(1, "all", "31/12/20", null, 100, 50));
+		assertThrows(IdNotFoundException.class, ()->service.generaStats(1, "all", "31/12/20", null, 100, 50));
 	}
 }

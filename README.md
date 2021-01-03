@@ -4,10 +4,16 @@ Lo scopo di questo progetto è quello di offrire un servizio meteo all'utente co
 Una volta effettuata la richiesta, il programma cercherà ed aggiungerà dati meteo alle città coinvolte nella ricerca con un intervallo di due ore, per un tempo stabilito dall'utente; al termine di questo tempo, o se l'utente vuole anche prima, sarà possibile richiedere al programma di generare statistiche sulle città circostanti a quella cercata tramite vari parametri
 
 
-<img src="https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/UseCaseMeteo.jpg">
+<img src="https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/UML/UseCaseMeteo.jpg">
 
 
-<img src="https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/ClassDiagramMeteo.jpg">
+<img src="https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/UML/ClassDiagramMeteo.jpg">
+
+
+<img src="https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/UML/Diagramma%20delle%20sequenze%20ricerca.png">
+
+
+<img src="https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/UML/Diagramma%20delle%20sequenze%20stats.png">
 
 
 # L'applicazione

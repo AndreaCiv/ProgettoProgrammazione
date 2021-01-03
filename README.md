@@ -293,7 +293,7 @@ Utilizzando la rotta "/removeAll" tramite il metodo DELETE, l'utente può cancel
 
 
 
-<img src="/Users/luca/Desktop/OOP.jpg"> caso d'uso delle rotte 
+<img src="https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/UseCaseMeteo.jpg"> caso d'uso delle rotte 
 
 <img src="diagclassi.jpg"> aggiungere da eclipse 
 

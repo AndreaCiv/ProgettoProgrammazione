@@ -7,8 +7,7 @@ Una volta effettuata la richiesta, il programma cercherà ed aggiungerà dati me
 <img src="https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/UseCaseMeteo.jpg">
 
 
-<img src="https://github.com/AndreaCiv/ProgettoProgrammazione/upload/main/ClassDiagramMeteo.jpg">
-
+<img src="https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/ClassDiagramMeteo.jpg">
 
 
 # L'applicazione

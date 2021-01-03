@@ -3,6 +3,19 @@
 Lo scopo di questo progetto è quello di offrire un servizio meteo all'utente con cui, scelta a suo piacimento una città, si visualizzino tutte le informazioni attuali relative alla temperatura, temperatura percepita e velocità del vento delle città circostanti a quella scelta al momento della richiesta.
 Una volta effettuata la richiesta, il programma cercherà ed aggiungerà dati meteo alle città coinvolte nella ricerca con un intervallo di due ore, per un tempo stabilito dall'utente; al termine di questo tempo, o se l'utente vuole anche prima, sarà possibile richiedere al programma di generare statistiche sulle città circostanti a quella cercata tramite vari parametri
 
+**INDICE**
+* [Diagrammi UML](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#diagrammi-uml)
+* [L'applicazione](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#lapplicazione)
+    * [Avvio](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#avvio)
+    * [Rotte disponibili](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#rotte-disponibili)
+        * [Ricerca](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#ricerca)
+        * [Statistiche](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#statistiche)
+        * [Salvataggio su file](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#salvataggio-su-file)
+        * [Caricamento del database da un file](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#caricamento-del-database-da-un-file)
+        * [Ottenere il database corrente](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#ottenere-il-database-corrente)
+        * [Cancellare tutte le ricerche](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#cancellare-tutte-le-ricerche)
+    * [Codice rotte](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#codice-rotte)
+* [Software utilizzati](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#software-utilizzati)
 
 # Diagrammi UML
 
@@ -40,7 +53,7 @@ Se durante la lettura di queste impostazioni viene lanciata qualche eccezione, v
 ## Rotte disponibili
 
 Dal programma vengono rese disponibili le seguenti rotte sulla porta 8080 del localhost:
-
+ 
 | Rotta         |    Metodo    |        Funzione                        |
 |---------------|--------------|----------------------------------------|
 | /ricerca      | POST         | Avvia ricerca e mostra dati istantanei |
@@ -293,23 +306,9 @@ Utilizzando la rotta "/removeAll" tramite il metodo DELETE, l'utente può cancel
 
 ## codice rotte
   
-## Software utilizzati
+# Software utilizzati
 * [Eclipse](https://www.eclipse.org/downloads/) - Ambiente di sviluppo
 * [UML Designer](http://www.umldesigner.org/) - software per la realizzazione dei diagrammi UML
 * [Maven](https://maven.apache.org/) - software di gestione di progetti e librerie
 * [Spring Boot](https://spring.io/projects/spring-boot) - framework per sviluppo di applicazioni in Java
 * [Postman](https://www.postman.com/) - ambiente di sviluppo API per effettuare richieste
-
-
-
-
-
-
-
-
-
-
-
-
-
-<img src="diagseq.jpg"> 

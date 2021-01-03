@@ -51,7 +51,7 @@ public class AggiornaDatiMeteoTask extends TimerTask {
 		if(System.currentTimeMillis() < this.fine)
 		{
 			this.ricerca.aggiungiDatiMeteo(this.dataParser);
-			System.out.println("Dati aggiornati");
+			System.out.println("Ricerca " + this.ricerca.getId() + ": dati meteo aggiunti");
 		}
 		else
 			this.cancel();

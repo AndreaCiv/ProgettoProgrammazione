@@ -2,8 +2,6 @@ package it.ldaac.meteoOOP.statsAndFilters;
 
 import java.util.Vector;
 
-import org.json.simple.JSONObject;
-
 import it.ldaac.meteoOOP.models.Citta;
 import it.ldaac.meteoOOP.models.DatoMeteo;
 

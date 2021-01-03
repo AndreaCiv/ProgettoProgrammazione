@@ -23,7 +23,6 @@ import it.ldaac.meteoOOP.exceptions.DateNotValidException;
 import it.ldaac.meteoOOP.exceptions.IdNotFoundException;
 import it.ldaac.meteoOOP.exceptions.StatsNotValidException;
 import it.ldaac.meteoOOP.models.Citta;
-import it.ldaac.meteoOOP.models.DatoMeteo;
 import it.ldaac.meteoOOP.models.Ricerca;
 import it.ldaac.meteoOOP.models.Richiesta;
 import it.ldaac.meteoOOP.statsAndFilters.Filters;

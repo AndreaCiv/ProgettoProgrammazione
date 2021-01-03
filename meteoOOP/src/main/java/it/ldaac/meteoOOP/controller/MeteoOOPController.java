@@ -2,9 +2,7 @@ package it.ldaac.meteoOOP.controller;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.Vector;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +17,6 @@ import it.ldaac.meteoOOP.exceptions.DateNotValidException;
 import it.ldaac.meteoOOP.exceptions.IdNotFoundException;
 import it.ldaac.meteoOOP.exceptions.RaggioNotValidException;
 import it.ldaac.meteoOOP.exceptions.StatsNotValidException;
-import it.ldaac.meteoOOP.models.Ricerca;
 import it.ldaac.meteoOOP.models.Richiesta;
 import it.ldaac.meteoOOP.service.MeteoService;
 

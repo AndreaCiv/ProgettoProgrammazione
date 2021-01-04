@@ -14,7 +14,7 @@ Una volta effettuata la richiesta, il programma cercherà ed aggiungerà dati me
         * [Caricamento del database da un file](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#caricamento-del-database-da-un-file)
         * [Ottenere il database corrente](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#ottenere-il-database-corrente)
         * [Cancellare tutte le ricerche](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#cancellare-tutte-le-ricerche)
-    * [Codice rotte](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#codice-rotte)
+    * [Struttura dell'applicazione](https://github.com/AndreaCiv/ProgettoProgrammazione#struttura-dellapplicazione)
 * [Software utilizzati](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#software-utilizzati)
 
 # Diagrammi UML

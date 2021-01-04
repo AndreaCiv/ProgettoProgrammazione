@@ -46,7 +46,7 @@ Se durante il caricamento viene lanciata una qualunque eccezione, viene iniziali
 Vengono poi letti, dal file config.JSON, vari parametri per la configurazzione dell'applicazione, questi sono:
 * **"API_key"** che contiene la chiave per le API di OpenWeather da inserire nell'URL delle richieste di dati
 * **"periodo_aggiornamento"** ossia il periodo di tempo in millisecondi che deve passare tra una richiesta di dati e l'altra durante la raccolta dei dati che segue l'avvio di ogni ricerca, di default è impostata su 7200000 ms, ossia 2 ore.
-* **"units"** il tipo di unità da utilizzare, di default è impostato su "metric", che utilizza i km/h per la velocità del vento e i °C per le temperature, altre possibilità possono essere consultate su [questa pagina](https://openweathermap.org/current#data).
+* **"units"** il tipo di unità da utilizzare, di default è impostato su "metric", che utilizza i m/s per la velocità del vento e i °C per le temperature, altre possibilità possono essere consultate su [questa pagina](https://openweathermap.org/current#data).
 Se durante la lettura di queste impostazioni viene lanciata qualche eccezione, vengono utilizzate quelle di default.
 
 
@@ -109,7 +109,7 @@ La rottà restituirà un file JSON contenente i seguenti campi:
     * **dati_meteo** array con all'interno il dato meteo istantaneo della città, con i campi:
         * **temperatura** temperatura effettiva in °C
         * **temperatura_percepita** temperatura percepita in °C
-        * **velocità_vento** velocità del vento in km/h
+        * **velocità_vento** velocità del vento in m/s
         * **data** data del rilevamento in formato UNIX, ossia il numero di millisecondi passati dal 1 Gennaio 1970
   
 Nel caso dell'esempio, la prima parte del ritorno sarebbe simile a questa:

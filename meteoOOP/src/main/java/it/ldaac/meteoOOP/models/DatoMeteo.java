@@ -25,7 +25,7 @@ public class DatoMeteo implements JSONAble, Cloneable {
 	private double temperaturaPercepita;
 	
 	/**
-	 * velocità del vento in km/h del dato meteo
+	 * velocità del vento in m/s del dato meteo
 	 */
 	private double velocitaVento;
 	
@@ -39,7 +39,7 @@ public class DatoMeteo implements JSONAble, Cloneable {
 	 * 
 	 * @param temperatura Temperatura in °C
 	 * @param tempPerc   Temperatura percepita in °C
-	 * @param velVento   Velocità del vento in km/h
+	 * @param velVento   Velocità del vento in m/s
 	 * @param dataUnix   Data in formato Unix
 	 */
 	public DatoMeteo (double temperatura, double tempPerc, double velVento, long dataUnix)
@@ -58,7 +58,7 @@ public class DatoMeteo implements JSONAble, Cloneable {
 	 * Il JSONObject deve avere i seguenti campi
 	 * "temperatura" 			temperatura in °C
 	 * "temperatura_percepita"  temperatura percepita in °C
-	 * "velocita_vento"			velocità del vento in km/h
+	 * "velocita_vento"			velocità del vento in m/s
 	 * "data"					data del rilevamento in formato Unix 
 	 * 
 	 */
@@ -102,14 +102,14 @@ public class DatoMeteo implements JSONAble, Cloneable {
 	}
 	
 	/**
-	 * @return La velocità del vento del dato meteo in km/h
+	 * @return La velocità del vento del dato meteo in m/s
 	 */
 	public double getVelocitaVento() {
 		return velocitaVento;
 	}
 	
 	/**
-	 * @param velocitaVento Velocità del vento da impostare in km/h
+	 * @param velocitaVento Velocità del vento da impostare in m/s
 	 */
 	public void setVelocitaVento(double velocitaVento) {
 		this.velocitaVento = velocitaVento;
@@ -163,6 +163,7 @@ public class DatoMeteo implements JSONAble, Cloneable {
 	
 	/**
 	 * Crea una copia del dato meteo
+	 * 
 	 * @return una copia del dato meteo
 	 */
 	public DatoMeteo clone()

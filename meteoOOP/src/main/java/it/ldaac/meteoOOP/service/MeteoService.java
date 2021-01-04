@@ -99,8 +99,13 @@ public class MeteoService {
 			JSONObject config = (JSONObject) parser.parse(inputLine);
 			
 			this.periodoAggiornamentoDati = (long) config.get("periodo_aggiornamento");
+			System.out.println("Periodo di aggiornamento: " + this.periodoAggiornamentoDati/60000L + " minuti");
+			
 			this.coordParser = new CoordParser((String) config.get("API_key"));
 			this.dataParser = new DataParser((String) config.get("API_key"), (String) config.get("units"));
+			
+			System.out.println("API key: " + (String)config.get("API_key"));
+			System.out.println("Units: " + (String)config.get("units"));
 			
 		}
 		catch(IOException | ParseException e) {

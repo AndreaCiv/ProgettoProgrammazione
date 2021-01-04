@@ -302,10 +302,23 @@ Tramite la rotta "/getDataBase", che deve essere utilizzata tramite il metodo GE
 
 Utilizzando la rotta "/removeAll" tramite il metodo DELETE, l'utente può cancellare tutte le ricerche effettuate fino a quel momento
 
+---
 
+## Struttura dell'applicazione
 
-## codice rotte
-  
+Le ricerche avviate dall'utente tramite le richieste vengono salvate all'interno del vettore *rierche*, attributo del meteo service.
+Ad ogni ricerca è associato un *id*, ossia un numero univoco corrispondente all'id della città centrale della ricerca, fornito da OpenWeather, e un vettore di città, dove il primo posto è occupato proprio dalla città centrale della ricerca.
+A sua volta ogni città ha un vettore di dati meteo.
+Quando l'utente avvia una ricerca, viene fatta una prima richiesta ad OpenWeather, tramite l'API [City name](https://openweathermap.org/current#name), dalla quale risposta vengono ricavate le coordinate della città centrale della ricerca per chiamare l'API [Cities in circle](https://openweathermap.org/current#cycle) che restituisce i dati meteo della ricerca.
+Durante l'aggiornamento e l'aggiunta periodica dei dati, verrà richiamata la stessa API con le coordinate della prima città, ossia quella centrale, e il novo dato meteo viene aggiunto al vettore della città corrispondente.
+
+Le classi *Ricerca*, *Richiesta*, *Citta* e *DatoMeteo* implementano l'interfaccia personalizzata ***JSONAble*** che espone il metodo *toJSONObject()* il quale restituisce un JSONObject contenente gli attributi di quell'istanza della classe.
+Queste quattro classi implementano poi anche un costruttore che prende come argomento proprio un JSONObject, questo costruttore viene utilizzato nel programma ad esempio nel caricamento del database da un file, o nella copia delle ricerche per generare le statistiche.
+
+Quando vengono richieste delle statistiche dall'utente, il programma crea una copia della ricerca tramite il metodo *clone()* che viene mostrato dall'interfaccia *Cloneable*; questo affinchè nel filtraggio delle città e dei dati meteo non venga eliminato nulla dal database.
+
+---
+
 # Software utilizzati
 * [Eclipse](https://www.eclipse.org/downloads/) - Ambiente di sviluppo
 * [UML Designer](http://www.umldesigner.org/) - software per la realizzazione dei diagrammi UML

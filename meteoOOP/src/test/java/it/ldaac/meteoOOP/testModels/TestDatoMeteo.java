@@ -24,8 +24,14 @@ class TestDatoMeteo {
 	}
 
 	@Test
-	void test() {
+	void testConfrontaData() {
 		assertEquals(dato1.confrontaData(new Date(System.currentTimeMillis()-20)), true);
 	}
-
+	
+	@Test
+	void testToJSONObject() {
+		assertEquals(20D, dato1.toJSONObject().get("temperatura"));
+		assertEquals(18D, dato1.toJSONObject().get("temperatura_percepita"));
+		assertEquals(40D, dato1.toJSONObject().get("velocita_vento"));
+	}
 }

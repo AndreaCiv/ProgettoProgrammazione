@@ -24,8 +24,21 @@ class TestCitta {
 	}
 
 	@Test
-	void test() {
+	void testDistanza() {
 		assertEquals(477.58, citta1.calcolaDistanza(citta2), 2);
+	}
+	
+	@Test
+	void testToJSONObject() {
+		assertEquals("Roma", citta1.toJSONObject().get("nome_citta"));
+		assertEquals(1L, citta1.toJSONObject().get("id"));
+		assertEquals(41.89, citta1.toJSONObject().get("lat"));
+		assertEquals(12.48, citta1.toJSONObject().get("lon"));
+	}
+	
+	@Test
+	void testClone() {
+		assertEquals(citta1.toJSONObject(), citta1.clone().toJSONObject());
 	}
 
 }

@@ -20,7 +20,7 @@ Una volta effettuata la richiesta, il programma cercherà ed aggiungerà dati me
 # Diagrammi UML
 
 **Diagramma dei casi d'uso**
-<img src="https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/UseCaseMeteo.jpg">
+<img src="https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/UML/UseCaseMeteo.jpg">
 
 **Diagramma delle classi**
 <img src="https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/UML/ClassDiagramMeteo.jpg">

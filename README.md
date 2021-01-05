@@ -5,6 +5,10 @@ Una volta effettuata la richiesta, il programma cercherà ed aggiungerà dati me
 
 **INDICE**
 * [Diagrammi UML](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#diagrammi-uml)
+   * [Diagramma dei casi d'uso](https://github.com/AndreaCiv/ProgettoProgrammazione#diagramma-dei-casi-duso)
+   * [Diagramma delle classi](https://github.com/AndreaCiv/ProgettoProgrammazione#diagramma-delle-classi)
+   * [Diagramma delle sequenze (rotta "/ricerca)](https://github.com/AndreaCiv/ProgettoProgrammazione#diagramma-delle-sequenze-rotta-ricerca)
+   * [Diagramma delle sequenze (rotta "/stats)](https://github.com/AndreaCiv/ProgettoProgrammazione#diagramma-delle-sequenze-rotta-stats)
 * [L'applicazione](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#lapplicazione)
     * [Avvio](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#avvio)
     * [Rotte disponibili](https://github.com/AndreaCiv/ProgettoProgrammazione/blob/main/README.md#rotte-disponibili)
@@ -37,13 +41,11 @@ Una volta effettuata la richiesta, il programma cercherà ed aggiungerà dati me
 
 
 # L'applicazione
-
 Tramite L'API OpenWeather il programma riceve, salva e processa i dati meteo riguardanti le città circostanti a quella cercata dall'utente; per far questo utilizza più precisamente l'API "Cities in circle", la quale descrizione è disponibile al seguente [link](https://openweathermap.org/current#cycle)
 
 Più in particolare con dati meteo si intendono la temperatura effettiva, la temperatura percepita e la velocità del vento.
 
 ## Avvio
-
 All'avvio dell'applicazione verrà caricato dal file database.JSON, presente all'interno della cartella del programma, il salvataggio di tutte le ricerche presenti al suo interno, questo permette all'utente di generare statistiche su ricerche effettuate in passato.
 Se durante il caricamento viene lanciata una qualunque eccezione, viene inizializzato un nuovo database vuoto.
 

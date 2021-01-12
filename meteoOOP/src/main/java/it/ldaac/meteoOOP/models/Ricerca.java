@@ -130,11 +130,12 @@ public class Ricerca implements JSONAble, Cloneable {
 		for (Citta c : cittaAggiornate)
 		{
 			String nomeCitta = c.getNomeCitta();
+			long idCitta = c.getId();
 			Vector<DatoMeteo> nuovoDato = c.getDatiMeteo();
 			
 			for(int j=0; j<this.citta.size(); j++)
 			{
-				if(this.citta.elementAt(j).getNomeCitta().equals(nomeCitta))
+				if(this.citta.elementAt(j).getNomeCitta().equals(nomeCitta) && this.citta.elementAt(j).getId() == idCitta)
 					this.citta.elementAt(j).aggiungiDatoMeteo(nuovoDato.elementAt(0));
 			}
 		}

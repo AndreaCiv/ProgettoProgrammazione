@@ -14,9 +14,30 @@ import it.ldaac.meteoOOP.models.DatoMeteo;
 import it.ldaac.meteoOOP.statsAndFilters.Filters;
 
 class TestFilters {
-
+	
+	private Filters filtri;
+	
+	private Citta roma;
+	private Citta milano;
+	private Citta ancona;
+	private Citta bologna;
+	
+	private DatoMeteo dato1;
+	private DatoMeteo dato2;
+	private DatoMeteo dato3;
+	
 	@BeforeEach
 	void setUp() throws Exception {
+		filtri = new Filters();
+		
+		roma = new Citta("Roma", 1, 41.89, 12.48);
+		milano = new Citta("Milano", 2, 45.46, 9.19);
+		ancona = new Citta("Ancona", 3, 40.62, 13.52);
+		bologna = new Citta("Bologna", 4, 44.43, 11.35);
+		
+		dato1 = new DatoMeteo(10, 10, 30, System.currentTimeMillis());
+		dato2 = new DatoMeteo(20, 20, 10, System.currentTimeMillis()-3600000L);
+		dato3 = new DatoMeteo(30, 30, 0, System.currentTimeMillis()-7200000L);
 	}
 
 	@AfterEach
@@ -25,12 +46,6 @@ class TestFilters {
 
 	@Test
 	void testFiltroDistanza() {
-		Filters filtri = new Filters();
-		
-		Citta roma = new Citta("Roma", 1, 41.89, 12.48);
-		Citta milano = new Citta("Milano", 2, 45.46, 9.19);
-		Citta ancona = new Citta("Ancona", 3, 40.62, 13.52);
-		Citta bologna = new Citta("Bologna", 4, 44.43, 11.35);
 		
 		Vector<Citta> daFiltrare = new Vector<Citta>();
 		daFiltrare.add(roma);
@@ -52,22 +67,16 @@ class TestFilters {
 	@Test
 	void testFiltroData() {
 		
-		Filters filtri = new Filters();
 		Vector<DatoMeteo> daFiltrare = new Vector<DatoMeteo>();
-		Vector<DatoMeteo> filtratoInizio = new Vector<DatoMeteo>();
-		Vector<DatoMeteo> filtratoInizioFine = new Vector<DatoMeteo>();
-		
-		DatoMeteo dato1 = new DatoMeteo(10, 10, 30, System.currentTimeMillis());
-		DatoMeteo dato2 = new DatoMeteo(20, 20, 10, System.currentTimeMillis()-3600000L);
-		DatoMeteo dato3 = new DatoMeteo(30, 30, 0, System.currentTimeMillis()-7200000L);
-		
 		daFiltrare.add(dato1);
 		daFiltrare.add(dato2);
 		daFiltrare.add(dato3);
 		
+		Vector<DatoMeteo> filtratoInizio = new Vector<DatoMeteo>();
 		filtratoInizio.add(dato1);
 		filtratoInizio.add(dato2);
 		
+		Vector<DatoMeteo> filtratoInizioFine = new Vector<DatoMeteo>();
 		filtratoInizioFine.add(dato2);
 		
 		for(int i = 0; i<filtri.filtraDatiMeteo(daFiltrare, new Date(System.currentTimeMillis()-5400000L)).size(); i++)

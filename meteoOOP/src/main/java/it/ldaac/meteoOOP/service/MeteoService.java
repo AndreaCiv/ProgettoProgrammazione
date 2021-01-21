@@ -85,7 +85,6 @@ public class MeteoService {
 			System.out.println("Database caricato dal file");
 		}catch(IOException | ParseException e) {
 			this.ricerche = new Vector<Ricerca>();
-			e.printStackTrace();
 			System.out.println("Errore nel caricamento del database");
 			System.out.println("Inizializzo un database vuoto");
 		}
